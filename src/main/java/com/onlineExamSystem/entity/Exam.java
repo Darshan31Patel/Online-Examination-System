@@ -27,12 +27,12 @@ public class Exam {
 	private int passingMarks;
 	
 	@ManyToMany
-	@JoinTable(name = "mcq_ques", joinColumns = @JoinColumn(name="exam_id"),
+	@JoinTable(name = "exam_mcq_ques", joinColumns = @JoinColumn(name="exam_id"),
 	inverseJoinColumns = @JoinColumn(name="ques_id"))
 	private List<McqQuestion> mcqQues;
 	
 	@ManyToMany
-	@JoinTable(name = "program_ques", joinColumns = @JoinColumn(name="exam_id"),
+	@JoinTable(name = "exam_program_ques", joinColumns = @JoinColumn(name="exam_id"),
 	inverseJoinColumns = @JoinColumn(name="ques_id"))
 	private List<ProgrammingQuestion> programQues;
 }
