@@ -19,7 +19,7 @@ import com.onlineExamSystem.repository.AdminRepository;
 import com.onlineExamSystem.repository.StudentRepository;
 
 @Service
-public class StudentService implements UserDetailsService{
+public class StudentService{
 
 	@Autowired
 	public StudentRepository studentRepository;
@@ -69,15 +69,4 @@ public class StudentService implements UserDetailsService{
 		return "Student Details not found";
 	}
 	
-	
-// code for authorization
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
-		Student student = studentRepository.findByEmail(email)
-				.orElseThrow(() -> new UsernameNotFoundException("Student not found with email: " + email));
-		
-		return new User(student.getEmail(),
-                student.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_STUDENT")));
 	}
-}

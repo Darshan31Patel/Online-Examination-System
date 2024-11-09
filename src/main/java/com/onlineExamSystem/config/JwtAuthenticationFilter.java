@@ -1,9 +1,11 @@
 package com.onlineExamSystem.config;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -12,7 +14,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.onlineExamSystem.entity.Admin;
 import com.onlineExamSystem.service.AdminService;
+import com.onlineExamSystem.service.StudentService;
 
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +28,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private JwtUtil jwtUtil;
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private StudentService studentService;
 	
+	
+			
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -43,18 +51,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 authenticationDetailsSource.buildDetails(request);
                 SecurityContextHolder.getContext().setAuthentication(null); // Set an authentication object if required
             }
-			
-			
-//			if(adminId!=null && SecurityContextHolder.getContext().getAuthentication()==null) {
-//				UserDetails admin = adminService.loadUserByUsername(adminId.toString());
-//				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(admin, null, admin.getAuthorities());
-//				
-//				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//				SecurityContextHolder.getContext().setAuthentication(authToken);
-//			}
-		}
-		filterChain.doFilter(request, response);
+		}	
+		
+	    filterChain.doFilter(request, response);
 	}
-	
+
 	
 }

@@ -134,4 +134,7 @@ public class AdminController {
 		Long adminId = jwtUtil.extractAdminId(token);
 		return studentService.deleteStudent(studentId, adminId);
 	}
+	
+	
+
 }
