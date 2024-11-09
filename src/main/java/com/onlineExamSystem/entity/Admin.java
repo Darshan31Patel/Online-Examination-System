@@ -1,5 +1,7 @@
 package com.onlineExamSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +19,20 @@ public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long adminId;
+	private String name;
+	private String email;
+	private String password;
 	
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public Long getAdminId() {
 		return adminId;
 	}
@@ -35,20 +50,6 @@ public class Admin {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	private String name;
-	private String email;
-	private String password;
-	@Override
-	public String toString() {
-		return "Admin [adminId=" + adminId + ", name=" + name + ", email=" + email + ", password=" + password + "]";
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
+	}	
 	
 }
