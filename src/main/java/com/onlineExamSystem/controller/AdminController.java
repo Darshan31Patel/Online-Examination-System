@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,9 @@ import com.onlineExamSystem.service.StudentService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @RestController
@@ -59,7 +63,7 @@ public class AdminController {
 	@PostMapping("/admin/login")
 	public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest loginRequest) {
 		String token = adminService.login(loginRequest.getEmail(),loginRequest.getPassword());
-		System.out.println("token in admin login : " + token);
+//		System.out.println("token in admin login : " + token);
 		if (token!=null) {
 			Map<String, String> response = new HashMap<String, String>();
 			response.put("token", token);
@@ -98,10 +102,36 @@ public class AdminController {
 		}
 	}
 	
+	
 	@GetMapping("/admin/getAllStudent")
 	public List<Student> getAllStudent(@RequestHeader("Authorization") String token){
+		System.out.println("All student token : " + token);
+
+	    if (token.startsWith("Bearer ")) {
+	        token = token.substring(7);
+	    }
 		Long adminId = jwtUtil.extractAdminId(token);
 		return studentService.getAllStudents(adminId);
 	}
 	
+	
+	@PutMapping("/admin/updateStudent/{id}")
+	public String putMethodName(@PathVariable Long id, @RequestBody Student student, @RequestHeader("Authorization") String token) {
+		if (token.startsWith("Bearer ")) {
+	        token = token.substring(7);
+	    }
+		Long adminId = jwtUtil.extractAdminId(token);
+		
+		return studentService.updateStudent(id, student, adminId);
+	}
+	
+	
+	@DeleteMapping("/admin/deleteStudent/{studentId}")
+	public String deleteStudent(@PathVariable Long studentId, @RequestHeader("Authorization") String token) {
+		if (token.startsWith("Bearer ")) {
+	        token = token.substring(7);
+	    }
+		Long adminId = jwtUtil.extractAdminId(token);
+		return studentService.deleteStudent(studentId, adminId);
+	}
 }

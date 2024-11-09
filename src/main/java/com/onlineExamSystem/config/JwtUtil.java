@@ -47,7 +47,7 @@ public class JwtUtil {
     // Extract JWT token from Authorization header
     public String getTokenFromRequest(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
-        System.out.println("Authorization Header: " + header);
+//        System.out.println("Authorization Header: " + header);
         if (header != null && header.startsWith("Bearer ")) {
             return header.substring(7); // Remove "Bearer " prefix
         }

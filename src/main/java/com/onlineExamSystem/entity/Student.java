@@ -84,6 +84,11 @@ public class Student {
 		this.adminName = adminName;
 	}
 
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", name=" + name + ", email=" + email + ", rollNo=" + rollNo

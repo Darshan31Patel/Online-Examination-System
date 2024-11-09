@@ -57,7 +57,9 @@ public class AdminService implements UserDetailsService{
 		
 	}
 
-	
+	public Admin findAdminById(Long adminId) {
+	    return adminRepository.findById(adminId).orElse(null);
+	}
 	
 
 	@Override

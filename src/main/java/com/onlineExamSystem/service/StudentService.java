@@ -2,6 +2,7 @@ package com.onlineExamSystem.service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -41,12 +42,32 @@ public class StudentService implements UserDetailsService{
 	}
 	
 	
-	
 	public List<Student> getAllStudents(Long adminId){
 		return studentRepository.findByAdminNameAdminId(adminId);
 	}
 	
 	
+	public String updateStudent(Long StudentId, Student student, Long adminId) {
+		Optional<Student> existingStudent = studentRepository.findById(StudentId);
+		Optional<Admin> admin = adminRepository.findById(adminId);
+		if(existingStudent.isPresent() && existingStudent.get().getAdminName().getAdminId().equals(adminId)) {
+			student.setStudentId(StudentId);
+			student.setAdminName(admin.get());
+			studentRepository.save(student);
+			return "Student Details Updated Successfully";
+		}
+		return "Student not found";
+	}
+	
+	
+	public String deleteStudent(Long studentId, Long adminId) {
+		Optional<Student> student = studentRepository.findById(studentId);
+		if(student.isPresent() && student.get().getAdminName().getAdminId().equals(adminId)) {
+			studentRepository.delete(student.get());
+			return "Student Details Deleted Successfully";
+		}
+		return "Student Details not found";
+	}
 	
 	
 // code for authorization
