@@ -27,17 +27,7 @@ public class AdminService{
 	
 	private Map<Long, String> adminTokens = new HashMap<Long, String>();
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
-	
-//	public String login(String email, String password) {
-//	        Admin admin = adminRepository.findByEmail(email).orElse(null);
-//	        System.out.println("Admin info : " + admin.toString());
-//	        if (admin != null && encoder.matches(password, admin.getPassword())) {
-//	            String token = jwtUtil.generateToken(email, admin.getAdminId(), "admin");
-//	            adminTokens.put(admin.getAdminId(), token); // Storing Admin tokens
-//	            return token;
-//	        }
-//	        return null;
-//	}
+
 	
 	public String login(String email, String password) {
 		Admin admin = adminRepository.findByEmail(email).orElse(null);
@@ -71,7 +61,18 @@ public class AdminService{
 	    return adminRepository.findById(adminId).orElse(null);
 	}
 	
-
-	
-
 }
+
+
+
+
+//public String login(String email, String password) {
+//        Admin admin = adminRepository.findByEmail(email).orElse(null);
+//        System.out.println("Admin info : " + admin.toString());
+//        if (admin != null && encoder.matches(password, admin.getPassword())) {
+//            String token = jwtUtil.generateToken(email, admin.getAdminId(), "admin");
+//            adminTokens.put(admin.getAdminId(), token); // Storing Admin tokens
+//            return token;
+//        }
+//        return null;
+//}

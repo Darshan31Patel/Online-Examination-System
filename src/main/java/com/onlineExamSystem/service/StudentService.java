@@ -1,7 +1,9 @@
 package com.onlineExamSystem.service;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.onlineExamSystem.config.JwtUtil;
 import com.onlineExamSystem.entity.Admin;
 import com.onlineExamSystem.entity.Student;
 import com.onlineExamSystem.repository.AdminRepository;
@@ -27,8 +30,22 @@ public class StudentService{
 	public AdminService adminService;
 	@Autowired
 	public AdminRepository adminRepository;
+	@Autowired
+	public JwtUtil jwtUtil;
 	
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+	private Map<Long, String> studentTokens = new HashMap<Long, String>();
+	
+	
+	public String login(String email, String password) {
+		Student student = studentRepository.findByEmail(email).orElse(null);
+		if(student!=null && encoder.matches(password, student.getPassword()) ) {
+			String token = jwtUtil.generateToken(email, student.getStudentId());
+			studentTokens.put(student.getStudentId(), token);
+			return token;
+		}		
+		return null;
+	}
 	
 	
 	public String addStudent(Student student, long adminId) {
@@ -53,6 +70,7 @@ public class StudentService{
 		if(existingStudent.isPresent() && existingStudent.get().getAdminName().getAdminId().equals(adminId)) {
 			student.setStudentId(StudentId);
 			student.setAdminName(admin.get());
+			student.setPassword(existingStudent.get().getPassword());
 			studentRepository.save(student);
 			return "Student Details Updated Successfully";
 		}

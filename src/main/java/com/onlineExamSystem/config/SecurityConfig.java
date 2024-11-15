@@ -32,7 +32,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 		http.csrf(customizer -> customizer.disable());
-		http.authorizeHttpRequests(request -> request.requestMatchers("/admin/**")
+		http.authorizeHttpRequests(request -> request.requestMatchers("/**")
 //				.hasRole("ADMIN")
 //				.requestMatchers("/student/**")
 //				.hasRole("STUDENT")
