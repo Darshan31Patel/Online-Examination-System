@@ -1,5 +1,7 @@
 package com.onlineExamSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +18,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class McqOption {
 
+	@JsonProperty("isCorrect")
+	private boolean isCorrect;
 	public Long getOptionId() {
 		return optionId;
 	}
@@ -46,11 +50,11 @@ public class McqOption {
 		this.optionText = optionText;
 	}
 
-	public Boolean isCorrect() {
+	public boolean isCorrect() {
 		return isCorrect;
 	}
 
-	public void setCorrect(Boolean isCorrect) {
+	public void setCorrect(boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}
 
@@ -72,7 +76,6 @@ public class McqOption {
 		// TODO Auto-generated constructor stub
 	}
 
-	private Boolean isCorrect;
 	
 	@ManyToOne
 	@JoinColumn(name="question_id")

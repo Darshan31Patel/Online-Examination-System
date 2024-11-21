@@ -119,6 +119,7 @@ public class QuestionController {
 	
 	@PostMapping("/admin/mcqOption/add/{quesId}")
 	public String addOption(@PathVariable Long quesId, @RequestBody McqOption mcqOption ,@RequestHeader("Authorization") String token ) {
+		System.out.println("MCQ : " + mcqOption.toString());
 		if (token == null || token.isEmpty()) {
 	        return "Token is missing";
 	    }
