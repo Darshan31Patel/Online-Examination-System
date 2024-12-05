@@ -3,167 +3,136 @@ package com.onlineExamSystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.onlineExamSystem.config.JwtUtil;
+import com.onlineExamSystem.entity.Admin;
 import com.onlineExamSystem.entity.McqOption;
 import com.onlineExamSystem.entity.McqQuestion;
+import com.onlineExamSystem.service.AdminService;
 import com.onlineExamSystem.service.QuestionService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PutMapping;
 
-
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 public class QuestionController {
 
-	@Autowired
-	private QuestionService questionService;
-	@Autowired
-	private JwtUtil jwtUtil;
-	
-	@PostMapping("/admin/mcqQues/add")
-	public String addQues(@RequestBody McqQuestion mcqQuestion, @RequestHeader("Authorization") String token) {
-		if (token == null || token.isEmpty()) {
-	        return "Token is missing";
-	    }
-		if (token.startsWith("Bearer ")) {
-	        token = token.substring(7);
-	    }
-		Long adminId = jwtUtil.extractAdminId(token);
-		if(adminId!=null) {
-			McqQuestion ques = questionService.createQuestion(mcqQuestion);	
-			System.out.println("Question added");
-			return ques.toString();
-		}
-		return "Error adding question";
-		
-	}
+    @Autowired
+    private QuestionService questionService;
 
-	@GetMapping("/admin/mcqQues/{quesId}")
-	public String getQuestion(@PathVariable Long quesId, @RequestHeader("Authorization") String token) {
-		if (token == null || token.isEmpty()) {
-	        return "Token is missing";
-	    }
-		if (token.startsWith("Bearer ")) {
-	        token = token.substring(7);
-	    }
-		Long adminId = jwtUtil.extractAdminId(token);
-		if(adminId!=null) {
-			McqQuestion ques = questionService.getQuestion(quesId);	
-			System.out.println("Question : " + ques.toString());
-			return ques.toString();
-		}
-		return "Error getting question";
-	}
-	
-	@GetMapping("/admin/mcqQues/allQues")
-	public String getAllQuestion(@RequestHeader("Authorization") String token) {
-		if (token == null || token.isEmpty()) {
-	        return "Token is missing";
-	    }
-		if (token.startsWith("Bearer ")) {
-	        token = token.substring(7);
-	    }
-		Long adminId = jwtUtil.extractAdminId(token);
-		if(adminId!=null) {
-			List<McqQuestion> ques = questionService.getAllQuestion();	
-			System.out.println("Question : " + ques.toString());
-			return ques.toString();
-		}
-		return "Error getting question";
-	}
+    @Autowired
+    private JwtUtil jwtUtil;
 
-	
-	@PutMapping("/admin/mcqQues/update/{questionId}")
-	public String updateQuestion(@PathVariable Long questionId, @RequestBody McqQuestion updatedQuestion, @RequestHeader("Authorization") String token) {
-//		System.out.println(updatedQuestion.toString());
-		if (token == null || token.isEmpty()) {
-	        return "Token is missing";
-	    }
-		if (token.startsWith("Bearer ")) {
-	        token = token.substring(7);
-	    }
-		Long adminId = jwtUtil.extractAdminId(token);
-		if(adminId!=null) {
-			McqQuestion updated = questionService.updateQuestion(questionId, updatedQuestion);
-			System.out.println("Question : " + updated.toString());
-			return updated.toString();
-		}
-		return "Error updating question";
-	}
- 
-	
-	@DeleteMapping("/admin/mcqQues/delete/{quesId}")
-	public String deleteQues(@PathVariable Long quesId, @RequestHeader("Authorization") String token) {
-		if (token == null || token.isEmpty()) {
-	        return "Token is missing";
-	    }
-		if (token.startsWith("Bearer ")) {
-	        token = token.substring(7);
-	    }
-		Long adminId = jwtUtil.extractAdminId(token);
-		if(adminId!=null) {
-			
-			return questionService.deleteQuestion(quesId);
-		}
-		return "Error deleting question";
-	}
-	
-	
-	@PostMapping("/admin/mcqOption/add/{quesId}")
-	public String addOption(@PathVariable Long quesId, @RequestBody McqOption mcqOption ,@RequestHeader("Authorization") String token ) {
-		System.out.println("MCQ : " + mcqOption.toString());
-		if (token == null || token.isEmpty()) {
-	        return "Token is missing";
-	    }
-		if (token.startsWith("Bearer ")) {
-	        token = token.substring(7);
-	    }
-		Long adminId = jwtUtil.extractAdminId(token);
-		if(adminId!=null) {
-			McqOption addedOption = questionService.addOption(quesId, mcqOption);
-			return addedOption.toString();
-		}
-		return "Error adding option";
-	}
-	
-	
-	@GetMapping("/admin/mcqOption/getOption/{quesId}")
-	public String getOption(@PathVariable Long quesId,@RequestHeader("Authorization") String token ) {
-		if (token == null || token.isEmpty()) {
-	        return "Token is missing";
-	    }
-		if (token.startsWith("Bearer ")) {
-	        token = token.substring(7);
-	    }
-		Long adminId = jwtUtil.extractAdminId(token);
-		if(adminId!=null) {
-			List<McqOption> option = questionService.getOptionsByQuestion(quesId);
-			return option.toString();
-		}
-		return "Error getting option";
-	}
-	
-	@DeleteMapping("/admin/mcqOption/deleteOption/{optionId}")
-	public String deleteOption(@RequestBody Long optionId, @RequestHeader("Authorization") String token ) {
-		if (token == null || token.isEmpty()) {
-	        return "Token is missing";
-	    }
-		if (token.startsWith("Bearer ")) {
-	        token = token.substring(7);
-	    }
-		Long adminId = jwtUtil.extractAdminId(token);
-		if(adminId!=null) {
-			return questionService.deleteOption(optionId);
-		}
-		return "Error deleting option";
-	}
-	
+    @Autowired
+    private AdminService adminService;
+
+    private Admin verifyAdmin(String token) {
+        if (token == null || token.isEmpty()) {
+            throw new IllegalArgumentException("Token is missing");
+        }
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
+        Long adminId = jwtUtil.extractAdminId(token);
+        return adminId != null ? adminService.findAdminById(adminId) : null;
+    }
+
+    private String getTokenFromRequest(HttpServletRequest request) {
+        String token = jwtUtil.getTokenFromRequest(request);
+        if (token == null || token.isEmpty()) {
+            throw new IllegalArgumentException("Token is missing");
+        }
+        return token.startsWith("Bearer ") ? token.substring(7) : token;
+    }
+
+    @PostMapping("/admin/mcqQues/add")
+    public ResponseEntity<?> addQues(@RequestBody McqQuestion mcqQuestion, HttpServletRequest request) {
+        String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            mcqQuestion.setAdmin(admin);
+            McqQuestion ques = questionService.createQuestion(mcqQuestion);
+            return ResponseEntity.ok(ques);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error adding question");
+    }
+
+    @GetMapping("/admin/mcqQues/{quesId}")
+    public ResponseEntity<?> getQuestion(@PathVariable Long quesId, HttpServletRequest request) {
+        String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            McqQuestion ques = questionService.getQuestion(quesId);
+            return ResponseEntity.ok(ques);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error getting question");
+    }
+
+    @GetMapping("/admin/mcqQues/allQues")
+    public ResponseEntity<?> getAllQuestion(HttpServletRequest request) {
+        String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            List<McqQuestion> ques = questionService.getAllQuestion();
+            return ResponseEntity.ok(ques);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error getting questions");
+    }
+
+    @PutMapping("/admin/mcqQues/update/{questionId}")
+    public ResponseEntity<?> updateQuestion(@PathVariable Long questionId, @RequestBody McqQuestion updatedQuestion, HttpServletRequest request) {
+        String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            McqQuestion updated = questionService.updateQuestion(questionId, updatedQuestion);
+            return ResponseEntity.ok(updated);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error updating question");
+    }
+
+    @DeleteMapping("/admin/mcqQues/delete/{quesId}")
+    public ResponseEntity<?> deleteQues(@PathVariable Long quesId, HttpServletRequest request) {
+        String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            String result = questionService.deleteQuestion(quesId);
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error deleting question");
+    }
+
+    @PostMapping("/admin/mcqOption/add/{quesId}")
+    public ResponseEntity<?> addOption(@PathVariable Long quesId, @RequestBody McqOption mcqOption, HttpServletRequest request) {
+        String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            McqOption addedOption = questionService.addOption(quesId, mcqOption);
+            return ResponseEntity.ok(addedOption);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error adding option");
+    }
+
+    @GetMapping("/admin/mcqOption/getOption/{quesId}")
+    public ResponseEntity<?> getOption(@PathVariable Long quesId, HttpServletRequest request) {
+        String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            List<McqOption> options = questionService.getOptionsByQuestion(quesId);
+            return ResponseEntity.ok(options);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error getting options");
+    }
+
+    @DeleteMapping("/admin/mcqOption/deleteOption/{optionId}")
+    public ResponseEntity<?> deleteOption(@PathVariable Long optionId, HttpServletRequest request) {
+        String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            String result = questionService.deleteOption(optionId);
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error deleting option");
+    }
 }

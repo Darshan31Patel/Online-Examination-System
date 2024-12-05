@@ -11,6 +11,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +40,23 @@ public class McqQuestion {
 		return options;
 	}
 
+	public McqQuestion(Long questionId, List<McqOption> options, String question, Category category, Admin admin) {
+		super();
+		this.questionId = questionId;
+		this.options = options;
+		this.question = question;
+		this.category = category;
+		this.admin = admin;
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
 	public McqQuestion() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -56,7 +75,8 @@ public class McqQuestion {
 
 	@Override
 	public String toString() {
-		return "McqQuestion [questionId=" + questionId + ", question=" + question + ", category=" + category + "]";
+		return "McqQuestion [questionId=" + questionId + ", options=" + options + ", question=" + question
+				+ ", category=" + category + ", admin=" + admin + "]";
 	}
 
 	public void setQuestionId(Long questionId) {
@@ -87,4 +107,8 @@ public class McqQuestion {
 	public enum Category {
 		LOGICAL, TECHNICAL, PROGRAMMING
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "adminId")
+	private Admin admin;
 }
