@@ -1,5 +1,6 @@
 package com.onlineExamSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
@@ -79,5 +80,6 @@ public class McqOption {
 	
 	@ManyToOne
 	@JoinColumn(name="question_id")
+	@JsonIgnore	
 	private McqQuestion ques;
 }
