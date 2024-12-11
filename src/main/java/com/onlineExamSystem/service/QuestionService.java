@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.onlineExamSystem.entity.McqOption;
 import com.onlineExamSystem.entity.McqQuestion;
+import com.onlineExamSystem.entity.ProgrammingQuestion;
 import com.onlineExamSystem.repository.McqOptionRepository;
 import com.onlineExamSystem.repository.McqQuestionRepository;
+import com.onlineExamSystem.repository.ProgrammingQuestionRepository;
 
 @Service
 public class QuestionService {
@@ -17,6 +19,8 @@ public class QuestionService {
 	private McqQuestionRepository mcqQuestionRepository;
 	@Autowired
 	private McqOptionRepository mcqOptionRepository;
+	@Autowired
+	private ProgrammingQuestionRepository programmingQuestionRepository;
 	
 	public McqQuestion createQuestion(McqQuestion mcqQuestion) {
 		return mcqQuestionRepository.save(mcqQuestion);
@@ -70,4 +74,14 @@ public class QuestionService {
         }
         return "Option not found";
     }
+    
+    public String addProgQues(ProgrammingQuestion ques) {
+    	programmingQuestionRepository.save(ques);
+		return ques.toString();
+	}
+    
+    public List<ProgrammingQuestion> getAllProgrammingQuestions() {
+		return programmingQuestionRepository.findAll();
+	}
+    
 }

@@ -11,10 +11,14 @@ import com.onlineExamSystem.config.JwtUtil;
 import com.onlineExamSystem.entity.Admin;
 import com.onlineExamSystem.entity.McqOption;
 import com.onlineExamSystem.entity.McqQuestion;
+import com.onlineExamSystem.entity.ProgrammingQuestion;
 import com.onlineExamSystem.service.AdminService;
 import com.onlineExamSystem.service.QuestionService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class QuestionController {
@@ -135,4 +139,26 @@ public class QuestionController {
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error deleting option");
     }
+    
+    @PostMapping("/admin/progQues/addQues")
+    public String addProgQues(@RequestBody ProgrammingQuestion ques, HttpServletRequest request) {
+    	String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        ques.setAdmin(admin);
+        questionService.addProgQues(ques);
+    	return "Question added Successfully";
+    }
+    
+    @GetMapping("/admin/progQues/allQues")
+    public ResponseEntity<?> getAllQues(HttpServletRequest request) {
+    	String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+        if (admin != null) {
+            List<ProgrammingQuestion> ques = questionService.getAllProgrammingQuestions();
+            return ResponseEntity.ok(ques);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Data not fetched");
+    }
+    
+    
 }

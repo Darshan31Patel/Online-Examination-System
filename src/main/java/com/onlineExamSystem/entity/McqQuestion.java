@@ -3,6 +3,8 @@ package com.onlineExamSystem.entity;
 import java.util.List;
 import java.util.Locale.Category;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,7 +34,7 @@ public class McqQuestion {
 		return questionId;
 	}
 	
-	@OneToMany(mappedBy = "ques", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "ques", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<McqOption> options;
 
 
