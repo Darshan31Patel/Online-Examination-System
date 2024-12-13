@@ -22,7 +22,7 @@ function AddProgQuesForm() {
                }
         )
 
-        console.log(response.data);
+        // console.log(response.data);
         alert("Question added successfully")
         setAnswer("")
         setDifficulty("")

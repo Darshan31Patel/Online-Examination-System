@@ -53,4 +53,15 @@ public class JwtUtil {
         }
         return null;
     }
+    
+    public Long extractStudentId(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(secretKey.getBytes())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        System.out.println(token);
+        return claims.get("adminId", Long.class);
+    }
+
 }

@@ -9,4 +9,5 @@ import com.onlineExamSystem.entity.Exam;
 
 public interface ExamRepository extends JpaRepository<Exam, Long> {
 	List<Exam> findByAdmin(Admin admin);
+	Exam findByExamId(Long examId);
 }

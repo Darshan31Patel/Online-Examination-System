@@ -20,11 +20,11 @@ function AddExamForm() {
     );
   };
 
-  const handleProgrammingQuestionSelect = (question) => {
+  const handleProgrammingQuestionSelect = (quesId) => {
     setSelectedProgQues((prev) =>
-      prev.some((q) => q.question === question.question)
-        ? prev.filter((q) => q.question !== question.question) // Deselect question
-        : [...prev, question] // Select programming question
+      prev.some((q) => q.quesId === quesId)
+        ? prev.filter((q) => q.quesId !== quesId) // Deselect question
+        : [...prev, quesId] // Select programming question
     );
   };
 
@@ -37,16 +37,24 @@ function AddExamForm() {
       startTime,
       endTime,
       mcqQues: selectedQuestions,
-      programQues: progQues
+      programQues: selectedProgQues
     };
-    console.log("Exam Data to Submit:", examData);
+    // console.log("Exam Data to Submit:", examData);
     const response = await axios.post("http://localhost:8080/admin/exam/createExam",examData,{
         headers:{
             Authorization: `Bearer ${token}`,
         }
     })
-    console.log("Output : "+ response.data)
+    // console.log(response.data)
     alert("Exam created successfully")
+    setExamName("")
+    setEndTime("")
+    setExamName("")
+    setPassingMarks("")
+    setProgQues([])
+    setQuestions([])
+    setSelectedProgQues([])
+    setSelectedQuestions([])
   };
 
   const getQuesData = async () => {
@@ -158,19 +166,19 @@ function AddExamForm() {
             <h3>Select Programming Questions</h3>
             <div className="max-h-48 overflow-y-auto border p-2 rounded">
               {progQues.length > 0 ? (
-                progQues.map((question, index) => (
-                  <div key={index} className="flex items-center mb-2">
+                progQues.map((question) => (
+                  <div key={question.quesId} className="flex items-center mb-2">
                     <input
                       type="checkbox"
-                      id={`prog-question-${index}`}
-                      onChange={() => handleProgrammingQuestionSelect(question)}
+                      id={`prog-question-${question.quesId}`}
+                      onChange={() => handleProgrammingQuestionSelect(question.quesId)}
                       checked={selectedProgQues.some(
-                        (q) => q.question === question.question
+                        (q) => q.quesId === question.quesId
                       )}
                       className="mr-2"
                     />
                     <label
-                      htmlFor={`prog-question-${index}`}
+                      htmlFor={`prog-question-${question.quesId}`}
                       className="text-sm"
                     >
                       {question.question} ({question.difficulty})

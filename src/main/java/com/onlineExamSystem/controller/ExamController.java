@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,4 +65,10 @@ public class ExamController {
         Admin adminDetailAdmin = adminService.findAdminById(admin.getAdminId());
 		return examService.getExamsDetails(adminDetailAdmin);
 	}
+	
+	@GetMapping("/admin/exam/getExamById/{examId}")
+	public Exam getExamById(@PathVariable("examId") long examId) {
+	    return examService.getExamById(examId);
+	}
+
 }

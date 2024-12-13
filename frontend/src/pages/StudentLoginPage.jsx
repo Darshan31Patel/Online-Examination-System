@@ -1,15 +1,17 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function StudentLoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate()
   
     const handleLoginSubmit = async (e) => {
       e.preventDefault();
       // console.log(email + " " + password)
       const data = {email: email, password: password};
-      console.log(data);
+      // console.log(data);
       
       try{
           const response = await axios.post('http://localhost:8080/student/login', data);
@@ -19,6 +21,7 @@ function StudentLoginPage() {
           if(response.status === 200){
             localStorage.setItem('token', response.data.token);
             console.log("token stored")
+            navigate('/student/dashboard')
           }
       }catch(error){
           console.log("Error occured in login");

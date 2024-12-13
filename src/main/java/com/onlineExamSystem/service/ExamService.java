@@ -35,4 +35,8 @@ public class ExamService {
 	public List<Exam> getExamsDetails(Admin admin){
 		return examRepository.findByAdmin(admin);
 	}
+	
+	public Exam getExamById(long examId) {
+		return examRepository.findByExamId(examId);
+	}
 }
