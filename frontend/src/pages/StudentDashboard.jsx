@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import StudentSidebar from '../component/StudentSidebar'
 import StudentExam from '../component/StudentExam'
+import StudentExamResult from '../component/StudentExamResult'
 
 function StudentDashboard() {
     const [selectedOption, setSelectedOption] = useState("")
@@ -13,6 +14,7 @@ function StudentDashboard() {
         <StudentSidebar onClick={handleSidebarClick}/>
 
         {selectedOption==="exam" && <StudentExam/>}
+        {selectedOption==="result" && <StudentExamResult/>}
     </div>
   )
 }

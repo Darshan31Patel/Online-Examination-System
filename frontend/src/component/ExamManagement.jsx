@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import AddExamForm from './AddExamForm'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function ExamManagement() {
 
     const[addForm,setAddForm] = useState(false) 
     const [examDetail,setExamDetail] = useState([])
+    const navigate = useNavigate()
 
     const getData = async ()=>{
         try {
@@ -20,6 +22,14 @@ function ExamManagement() {
         } catch (error) {
             console.log("Error fetching data");
         }
+    }
+
+    const handleResult = (examId) =>{
+        navigate(`/examResult/${examId}`)
+    }
+
+    const handleEditExam = (examId)=>{
+        navigate(`/editExam/${examId}`)
     }
 
     useEffect(()=>{
@@ -62,6 +72,10 @@ function ExamManagement() {
                 </div>
                 <div className="text-gray-600">
                     <strong>Programming Questions:</strong> {exam.programQues?.length || 0}
+                </div>
+                <div className='mt-2'>
+                    <button className="p-2 mr-2 bg-green-600 text-white rounded-md" onClick={()=>handleEditExam(exam.examId)} >Edit Exam</button>
+                    <button className="p-2 mr-2 bg-yellow-600 text-white rounded-md" onClick={()=>handleResult(exam.examId)}>View Result</button>
                 </div>
             </div>
         ))}

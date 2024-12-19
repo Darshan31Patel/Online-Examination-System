@@ -7,23 +7,22 @@ function AddExamForm() {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [questions, setQuestions] = useState([]);
-  const [selectedQuestions, setSelectedQuestions] = useState([]);
-  const [progQues,setProgQues] = useState([])
-  const [selectedProgQues, setSelectedProgQues] = useState([])
+  const [selectedQuestions, setSelectedQuestions] = useState([]); 
+  const [progQues, setProgQues] = useState([]); 
+  const [selectedProgQues, setSelectedProgQues] = useState([]); 
 
- 
   const handleQuestionSelect = (questionId) => {
     setSelectedQuestions((prev) =>
-        prev.some((q) => q.questionId === questionId)
-          ? prev.filter((q) => q.questionId !== questionId) // Deselect question
-          : [...prev, { questionId }] // Select question with questionId
+      prev.some((q) => q.questionId === questionId)
+        ? prev.filter((q) => q.questionId !== questionId) // Deselect question
+        : [...prev, { questionId }] // Select question with questionId
     );
   };
 
   const handleProgrammingQuestionSelect = (quesId) => {
     setSelectedProgQues((prev) =>
-      prev.some((q) => q.quesId === quesId)
-        ? prev.filter((q) => q.quesId !== quesId) // Deselect question
+      prev.includes(quesId)
+        ? prev.filter((id) => id !== quesId) // Deselect programming question
         : [...prev, quesId] // Select programming question
     );
   };
@@ -31,30 +30,46 @@ function AddExamForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
+
+    const formattedProgQues = selectedProgQues.map((quesId) => ({ quesId }));
+
     const examData = {
       examName,
       passingMarks,
       startTime,
       endTime,
-      mcqQues: selectedQuestions,
-      programQues: selectedProgQues
+      mcqQues: selectedQuestions, 
+      programQues: formattedProgQues, 
     };
-    // console.log("Exam Data to Submit:", examData);
-    const response = await axios.post("http://localhost:8080/admin/exam/createExam",examData,{
-        headers:{
+
+    console.log("Exam Data to Submit:", examData);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/admin/exam/createExam",
+        examData,
+        {
+          headers: {
             Authorization: `Bearer ${token}`,
+          },
         }
-    })
-    // console.log(response.data)
-    alert("Exam created successfully")
-    setExamName("")
-    setEndTime("")
-    setExamName("")
-    setPassingMarks("")
-    setProgQues([])
-    setQuestions([])
-    setSelectedProgQues([])
-    setSelectedQuestions([])
+      );
+      console.log(response.data);
+      alert("Exam created successfully");
+
+      // Reset form fields
+      setExamName("");
+      setPassingMarks("");
+      setStartTime("");
+      setEndTime("");
+      setQuestions([]);
+      setProgQues([]);
+      setSelectedQuestions([]);
+      setSelectedProgQues([]);
+    } catch (error) {
+      console.error("Error creating exam:", error);
+      alert("Failed to create exam. Please try again.");
+    }
   };
 
   const getQuesData = async () => {
@@ -70,25 +85,26 @@ function AddExamForm() {
       );
       setQuestions(response.data);
     } catch (error) {
-      console.error("Error fetching questions:", error);
+      console.error("Error fetching MCQ questions:", error);
     }
   };
 
-  const getProgQues = async()=>{
+  const getProgQues = async () => {
     try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8080/admin/progQues/allQues", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        setProgQues(response.data)
-        // console.log(response.data); 
-                   
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        "http://localhost:8080/admin/progQues/allQues",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setProgQues(response.data);
     } catch (error) {
-        console.log("Error fetching questions");
+      console.error("Error fetching programming questions:", error);
     }
-}
+  };
 
   useEffect(() => {
     getQuesData();
@@ -157,7 +173,7 @@ function AddExamForm() {
                   </div>
                 ))
               ) : (
-                <p>No questions available</p>
+                <p>No MCQ questions available</p>
               )}
             </div>
           </div>
@@ -172,15 +188,10 @@ function AddExamForm() {
                       type="checkbox"
                       id={`prog-question-${question.quesId}`}
                       onChange={() => handleProgrammingQuestionSelect(question.quesId)}
-                      checked={selectedProgQues.some(
-                        (q) => q.quesId === question.quesId
-                      )}
+                      checked={selectedProgQues.includes(question.quesId)}
                       className="mr-2"
                     />
-                    <label
-                      htmlFor={`prog-question-${question.quesId}`}
-                      className="text-sm"
-                    >
+                    <label htmlFor={`prog-question-${question.quesId}`} className="text-sm">
                       {question.question} ({question.difficulty})
                     </label>
                   </div>

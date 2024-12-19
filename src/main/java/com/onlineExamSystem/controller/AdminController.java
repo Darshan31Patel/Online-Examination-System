@@ -75,6 +75,17 @@ public class AdminController {
 		}
 	}
 	
+	@PostMapping("/admin/logout")
+	public ResponseEntity<Map<String, String>> logout(HttpServletRequest request){
+		String token = jwtUtil.getTokenFromRequest(request);
+		if(token!=null) {
+			Map<String, String> response = new HashMap<String, String>();
+			response.put("token", null);
+			return ResponseEntity.ok(response);
+		}else {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error","logout failed"));
+		}
+	}
 
 	
 	@PostMapping("/admin/addStudent")

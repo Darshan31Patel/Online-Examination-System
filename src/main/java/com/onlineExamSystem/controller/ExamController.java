@@ -13,10 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.onlineExamSystem.config.JwtUtil;
 import com.onlineExamSystem.entity.Admin;
 import com.onlineExamSystem.entity.Exam;
+import com.onlineExamSystem.entity.ExamSubmission;
+import com.onlineExamSystem.entity.Student;
+import com.onlineExamSystem.repository.ExamRepository;
+import com.onlineExamSystem.repository.StudentRepository;
 import com.onlineExamSystem.service.AdminService;
 import com.onlineExamSystem.service.ExamService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
@@ -28,6 +34,11 @@ public class ExamController {
 	JwtUtil jwtUtil;
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	StudentRepository studentRepository;
+	@Autowired
+	ExamRepository examRepository;
+	
 	
 	private Admin verifyAdmin(String token) {
         if (token == null || token.isEmpty()) {
@@ -70,5 +81,30 @@ public class ExamController {
 	public Exam getExamById(@PathVariable("examId") long examId) {
 	    return examService.getExamById(examId);
 	}
-
+	
+	@PostMapping("/exam/saveMarks")
+	public ExamSubmission saveMarks(@RequestBody ExamSubmission examSubmission, HttpServletRequest request) {
+		String token = getTokenFromRequest(request);
+		Long studentId = jwtUtil.extractStudentId(token);
+		Student student = studentRepository.findByStudentId(studentId);
+		Long examId = examSubmission.getExam().getExamId();
+		Exam exam = examRepository.findByExamId(examId);
+		examSubmission.setStudent(student);
+		examSubmission.setExam(exam);
+		return examService.saveMarks(examSubmission);
+	}
+	
+	@GetMapping("/exam/result/{examId}")
+	public List<ExamSubmission> getMarksByExam(@PathVariable Long examId) {
+		return examService.getMarksByExamId(examId);
+	}
+	
+	@GetMapping("/exam/result/student")
+	public List<ExamSubmission> getMarksByStudent(HttpServletRequest request) {
+		String token = getTokenFromRequest(request);
+		Long studentId = jwtUtil.extractStudentId(token);
+		Student student = studentRepository.findByStudentId(studentId);
+		return examService.getMarksByStudent(student);
+	}
+	
 }

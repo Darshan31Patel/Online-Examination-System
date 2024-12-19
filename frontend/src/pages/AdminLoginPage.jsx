@@ -25,6 +25,7 @@ function LoginPage() {
         }
     }catch(error){
         console.log("Error occured in login");
+        alert("Invalid Email Id or Password")
     }
 
   };

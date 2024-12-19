@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ExamPage() {
   const { id } = useParams();
   const [examData, setExamData] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [userAnswer,setUserAnswer] = useState({});
-  const [submit,setSubmit] = useState(false);
+  const [userAnswer, setUserAnswer] = useState({});
+  const [submit, setSubmit] = useState(false);
+  const [timeLeft, setTimeLeft] = useState("");
+  const navigate = useNavigate();
+  const [handleSubmitData,setHandleSubmitData] = useState(false)
 
   const getData = async () => {
     try {
@@ -15,52 +18,110 @@ function ExamPage() {
       const response = await axios.get(`http://localhost:8080/admin/exam/getExamById/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
-        }
+        },
       });
       setExamData(response.data);
-    //   console.log(response.data);
     } catch (error) {
-      console.log("Error fetching exam data");
+      console.log("Error fetching exam data:", error);
     }
   };
 
-  const handleOptionChange = (questionId,option) =>{
-    setUserAnswer(prev=>({
-        ...prev, [questionId]:option
-    }))
-  }
-
-  const handleProgrammingAnswer = (quesId, answer) => {
-    setUserAnswer(prev => ({
-      ...prev,
-      [quesId]: answer,
-    }));
+  const handleOptionChange = (questionId, option) => {
+    setUserAnswer((prev) => {
+      const updatedAnswers = { ...prev };
+      updatedAnswers[questionId] = option; 
+      return updatedAnswers;
+    });
   };
 
-  const handleSubmit =()=>{
-    setSubmit(true)
-    console.log(userAnswer);
-    
-  }
+  const handleProgrammingAnswer = (quesId, answer) => {
+    setUserAnswer((prev) => {
+      const updatedAnswers = { ...prev };
+      updatedAnswers[quesId] = answer; 
+      return updatedAnswers;
+    });
+  };
+
+  const calculateMarks = (data) => {
+    const marksPerQues = 4;
+    let marks = 0;
+
+    Object.values(data).forEach((answer) => {
+      if (answer?.isCorrect) {
+        marks += marksPerQues;
+      }
+    });
+    return marks;
+  };
+
+  const handleSubmit = async () => {
+    setSubmit(true);
+    setHandleSubmitData(true)
+    console.log("Submitted Answers:", userAnswer);
+    const marks = calculateMarks(userAnswer);
+    const status = marks >= examData.passingMarks; 
+    const data = {
+      score: marks,
+      isPassed: status,
+      exam: examData,
+    };
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post("http://localhost:8080/exam/saveMarks", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log("Error saving marks");
+    }
+  };
+
+  const calculateTimeLeft = () => {
+    const now = new Date();
+    const endTime = new Date(examData?.endTime);
+    const diffMs = endTime - now;
+
+    if (diffMs <= 0) {
+      setTimeLeft("Time's up!");
+      setSubmit(true);
+      return;
+    }
+
+    const hours = Math.floor(diffMs / (1000 * 60 * 60));
+    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+    setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
+  };
+
+  const handleHomePage = () => {
+    navigate("/student/dashboard");
+  };
 
   useEffect(() => {
     getData();
-    const handleCopy = (e) => {
-        e.preventDefault(); 
-      };
-  
-      const handleCut = (e) => {
-        e.preventDefault(); 
-      };
-  
-      const handlePaste = (e) => {
-        e.preventDefault();
-      };
-  
-      document.addEventListener('copy', handleCopy);
-      document.addEventListener('cut', handleCut);
-      document.addEventListener('paste', handlePaste);
   }, [id]);
+
+  useEffect(() => {
+    if (submit && !handleSubmitData) {
+      handleSubmit();
+    }
+  }, [submit, handleSubmitData]);
+  
+
+  useEffect(() => {
+    if (examData) {
+      calculateTimeLeft();
+      const timer = setInterval(() => {
+        calculateTimeLeft();
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [examData]);
 
   if (!examData) {
     return <div>Loading...</div>;
@@ -73,59 +134,85 @@ function ExamPage() {
       : examData.programQues[currentIndex - (examData.mcqQues?.length || 0)];
 
   return (
-    <div className='mt-16 flex flex-col items-center w-full'>
-      <div className="w-3/4 bg-white shadow-md p-6 rounded-lg">
-        <h1 className='text-3xl font-bold mb-4 text-center uppercase'>{examData.examName}</h1>
-        <div className="text-center mb-6">
-          <h2 className='font-semibold'>Question {currentIndex + 1}</h2>
-        </div>
-        
-        <div className='mb-6 h-48'>
-          <p className='mb-3'>{currentQuestion?.question} ({currentQuestion?.category || currentQuestion?.difficulty})</p>
+    <div className="mt-16 flex flex-col items-center w-full">
+      {!submit &&
+        <div className="w-3/4 bg-white shadow-md p-6 rounded-lg">
+          <h1 className="text-3xl font-bold mb-4 text-center uppercase">{examData.examName}</h1>
+          <div className="text-center text-red-600 font-bold mb-4">Time Left: {timeLeft}</div>
 
-          {currentQuestion?.options ? (
-            <div>
-              {currentQuestion.options.map((option) => (
-                <div key={option.optionId} className="flex items-center mb-2">
-                  <input type="radio" name={`question-${currentQuestion.questionId}`} value={option.optionText} 
-                  checked = {userAnswer[currentQuestion.questionId]===option}
-                  onChange={()=> handleOptionChange(currentQuestion.questionId,option)}
-                  className='mr-3'/>
-                  <label>{option.optionText}</label>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <textarea placeholder="Enter your programming answer" className="w-full h-32 border rounded p-2"
-            value={userAnswer[currentQuestion.quesId] || ""}
-            onChange={(e)=> handleProgrammingAnswer(currentQuestion.quesId,e.target.value)} />
-          )}
-        </div>
+          <div className="text-center mb-6">
+            <h2 className="font-semibold">Question {currentIndex + 1} of {totalQuestions}</h2>
+          </div>
 
-        <div className="flex justify-between">
-          <button
-            className="bg-gray-500 text-white py-2 px-4 rounded"
-            onClick={() => setCurrentIndex(currentIndex - 1)}
-            disabled={currentIndex === 0}>
-            Previous
-          </button>
-          <button
-            className="bg-blue-500 text-white py-2 px-4 rounded"
-            onClick={() => setCurrentIndex(currentIndex + 1)}
-            disabled={currentIndex === totalQuestions - 1}>
-            Next
-          </button>
-        </div>
+          <div className="mb-6 h-48">
+            <p className="mb-3">
+              {currentQuestion?.question} ({currentQuestion?.category || currentQuestion?.difficulty})
+            </p>
 
-        <div className='mt-6 text-center'>
+            {currentQuestion?.options ? (
+              <div>
+                {currentQuestion.options.map((option) => (
+                  <div key={option.optionId} className="flex items-center mb-2">
+                    <input
+                      type="radio"
+                      name={`question-${currentQuestion.questionId}`}
+                      value={option.optionText}
+                      checked={userAnswer[currentQuestion.questionId]?.optionText === option.optionText}
+                      onChange={() => handleOptionChange(currentQuestion.questionId, option)}
+                      className="mr-3"
+                    />
+                    <label>{option.optionText}</label>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <textarea
+                placeholder="Enter your programming answer"
+                className="w-full h-32 border rounded p-2"
+                value={userAnswer[currentQuestion.quesId] || ""}
+                onChange={(e) => handleProgrammingAnswer(currentQuestion.quesId, e.target.value)}
+              />
+            )}
+          </div>
+
+          <div className="flex justify-between">
             <button
-            className="bg-green-500 text-white py-2 px-4 rounded"
-            onClick={handleSubmit}
-            disabled={submit}>
-                Submit
+              className="bg-gray-500 text-white py-2 px-4 rounded"
+              onClick={() => setCurrentIndex(currentIndex - 1)}
+              disabled={currentIndex === 0}
+            >
+              Previous
             </button>
-        </div>
-      </div>
+            <button
+              className="bg-blue-500 text-white py-2 px-4 rounded"
+              onClick={() => setCurrentIndex(currentIndex + 1)}
+              disabled={currentIndex === totalQuestions - 1}
+            >
+              Next
+            </button>
+          </div>
+
+          <div className="mt-6 text-center">
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded"
+              onClick={handleSubmit}
+              disabled={submit}
+            >
+              Submit
+            </button>
+          </div>
+        </div>}
+
+      {submit && 
+        <div className="bg-green-100 text-green-800 border border-green-300 p-6 rounded-lg text-center max-w-md mx-auto">
+          <p className="text-xl font-semibold mb-4">Exam Submitted Successfully.</p>
+          <p className="text-xl font-semibold mb-4">Your Score : {calculateMarks(userAnswer)}</p>
+          <button
+            onClick={handleHomePage}
+            className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-300">
+            Back to Home Page
+          </button>
+        </div>}
     </div>
   );
 }

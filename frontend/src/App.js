@@ -8,6 +8,8 @@ import StudentLoginPage from './pages/StudentLoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import ExamPage from './pages/ExamPage';
+import ResultPageAdmin from './pages/ResultPageAdmin';
+import EditExamAdmin from './pages/EditExamAdmin';
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path='admin/dashboard' element={<AdminDashboard/>}/>
         <Route path='student/dashboard' element={<StudentDashboard/>}/>
         <Route path='student/exam/:id' element={<ExamPage/>}/>
+        <Route path='examResult/:id' element={<ResultPageAdmin/>}/>
+        <Route path='editExam/:id' element={<EditExamAdmin/>}/>
       </Route>
     </Routes>
   );
