@@ -1,5 +1,6 @@
 package com.onlineExamSystem.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.onlineExamSystem.config.JwtUtil;
 import com.onlineExamSystem.entity.Admin;
@@ -87,4 +89,18 @@ public class StudentService{
 		return "Student Details not found";
 	}
 	
+	public List<Student> saveStudentExcelData(MultipartFile file,Admin admin) {
+	    List<Student> students = new ArrayList<>();
+	    try {
+	        students = ExcelStudentHelper.convertExcelToList(file.getInputStream());
+	        for(Student student:students) {
+				student.setAdminName(admin);
+			}
+	        studentRepository.saveAll(students);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return students;
 	}
+	
+}

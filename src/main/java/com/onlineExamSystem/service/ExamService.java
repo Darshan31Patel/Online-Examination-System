@@ -45,6 +45,17 @@ public class ExamService {
 		return examRepository.findByExamId(examId);
 	}
 	
+	public Exam updateExam(long id,Exam updatedExam) {
+		Exam existingExam = getExamById(id);
+		existingExam.setExamName(updatedExam.getExamName());
+        existingExam.setPassingMarks(updatedExam.getPassingMarks());
+        existingExam.setStartTime(updatedExam.getStartTime());
+        existingExam.setEndTime(updatedExam.getEndTime());
+        existingExam.getMcqQues().addAll(updatedExam.getMcqQues());
+        existingExam.getProgramQues().addAll(updatedExam.getProgramQues());
+		return examRepository.save(existingExam);
+	}
+	
 	public ExamSubmission saveMarks(ExamSubmission examSubmission) {
 		return examSubmissionRepository.save(examSubmission);
 	}

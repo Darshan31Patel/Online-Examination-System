@@ -1,6 +1,9 @@
 package com.onlineExamSystem.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,12 +19,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.onlineExamSystem.config.JwtUtil;
 import com.onlineExamSystem.entity.Admin;
 import com.onlineExamSystem.entity.Student;
 import com.onlineExamSystem.repository.AdminRepository;
 import com.onlineExamSystem.service.AdminService;
+import com.onlineExamSystem.service.ExcelStudentHelper;
 import com.onlineExamSystem.service.LoginRequest;
 import com.onlineExamSystem.service.StudentService;
 
@@ -148,8 +153,18 @@ public class AdminController {
 		return studentService.deleteStudent(studentId, adminId);
 	}
 	
-	
-
+	@PostMapping("/admin/studentExcelData")
+    public List<Student> saveExcelStudentData(@RequestParam("file") MultipartFile file, @RequestHeader("Authorization") String token) throws IOException{
+		if (token.startsWith("Bearer ")) {
+	        token = token.substring(7);
+	    }
+		Long adminId = jwtUtil.extractAdminId(token);
+		Admin admin = adminService.findAdminById(adminId);
+//		System.out.println(admin);
+		List<Student> students = studentService.saveStudentExcelData(file, admin);
+		System.out.println(students);
+    	return students;
+    }
 }
 
 //@PostMapping("/admin/login")

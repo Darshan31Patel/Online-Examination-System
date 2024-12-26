@@ -6,6 +6,7 @@ function AddStudentForm() {
   const [email, setEmail] = useState("");
   const [rollNo, setRollNo] = useState("");
   const [password, setPassword] = useState("");
+  const [file,setFile] = useState(null)
 
   const addStudent = async (e)=>{
     e.preventDefault();
@@ -13,7 +14,7 @@ function AddStudentForm() {
     console.log(data)
     try {
         const token = localStorage.getItem("token");
-        console.log(token);        
+        // console.log(token);        
         const response = await axios.post("http://localhost:8080/admin/addStudent",data,{
             headers: {
                 Authorization: `Bearer ${token}`
@@ -30,6 +31,28 @@ function AddStudentForm() {
         
     } catch (error) {
         console.log("Error occured in adding student details")
+    }
+  }
+
+  const handleFileUpload = async()=>{
+    // console.log(file);
+    const formData = new FormData();
+    formData.append('file',file)
+    try {
+      const token = localStorage.getItem('token')
+      const response = await axios.post("http://localhost:8080/admin/studentExcelData",formData,
+        {
+          headers:{
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data"
+        }
+        })
+        console.log(response.data);
+        alert("Student added Successfully")
+        
+    } catch (error) {
+      console.log("error uploading excel data");
+      
     }
   }
 
@@ -71,6 +94,13 @@ function AddStudentForm() {
             Register
           </button>
         </form>
+        <h1 className="text-center my-3 text-2xl">OR</h1>
+          <div className='text-center'>
+            <input type="file" accept='.xlsx' onChange={(e)=> setFile(e.target.files[0])} className='w-full' />
+          </div>
+          <button  className="w-full bg-blue-500 text-white p-2 rounded mt-4" onClick={handleFileUpload}>
+            Upload Excel File
+          </button>
       </div>
     </div>
     </div>

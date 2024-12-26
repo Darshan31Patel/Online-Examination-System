@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -67,6 +68,12 @@ public class ExamController {
 		examService.createExam(exam);
 		System.out.println("Exam created successfully");
 		return "Exam created successfully";
+	}
+	
+	@PutMapping("/admin/exam/updateExam/{id}")
+	public Exam updateExam(@RequestBody Exam exam, @PathVariable("id") Long id) {
+		Exam updatedExam = examService.updateExam(id, exam);
+		return updatedExam;
 	}
 	
 	@GetMapping("/admin/exam/getExamDetails")

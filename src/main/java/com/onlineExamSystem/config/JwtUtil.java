@@ -60,7 +60,7 @@ public class JwtUtil {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-        System.out.println(token);
+//        System.out.println(token);
         return claims.get("adminId", Long.class);
     }
 

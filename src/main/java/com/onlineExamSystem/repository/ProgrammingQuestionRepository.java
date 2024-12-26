@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.onlineExamSystem.entity.ProgrammingQuestion;
 
 public interface ProgrammingQuestionRepository extends JpaRepository<ProgrammingQuestion, Long>{
-
+	ProgrammingQuestion findByQuesId(Long quesId);
 }
