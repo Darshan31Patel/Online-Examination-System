@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function StudentSidebar({onClick}) {
+function StudentSidebar() {
 
   const navigate = useNavigate();
 
@@ -34,13 +34,13 @@ function StudentSidebar({onClick}) {
 
   return (
     <div className="fixed top-16 left-0 h-screen w-64 bg-blue-800 text-white p-4 overflow-y-auto" >
-      <div className="hover:bg-blue-600 cursor-pointer px-4 py-2 rounded" onClick={() => onClick("exam")}>
+      <div className="hover:bg-blue-600 cursor-pointer px-4 py-2 rounded" onClick={() => navigate("/student/exam")}>
         <h3 className="text-lg font-bold">Exam</h3>
       </div>
-      <div className="hover:bg-blue-600 cursor-pointer px-4 py-2 rounded" onClick={() => onClick("result")}>
+      <div className="hover:bg-blue-600 cursor-pointer px-4 py-2 rounded" onClick={() => navigate("/student/result")}>
         <h3 className="text-lg font-bold">Result</h3>
       </div>
-      <div className="hover:bg-blue-600 cursor-pointer px-4 py-2 rounded" onClick={() => onClick("password")}>
+      <div className="hover:bg-blue-600 cursor-pointer px-4 py-2 rounded" onClick={() => navigate("/student/password")}>
         <h3 className="text-lg font-bold">Change Password</h3>
       </div>
       <div>

@@ -18,7 +18,7 @@ function ResultPageAdmin() {
     }
     
     const handleClick = () => {
-        navigate("/admin/dashboard")
+        navigate("/admin/examManagement")
     }
 
     useEffect(() => {

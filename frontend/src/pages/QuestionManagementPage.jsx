@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AddQuesForm from './AddQuesForm';
-import AddProgQuesForm from './AddProgQuesForm';
+import AddQuesForm from '../component/AddQuesForm';
+import AddProgQuesForm from '../component/AddProgQuesForm';
+import AdminSidebar from '../component/AdminSidebar';
 
 function QuestionManagement() {
     const [addMcqQues, setAddMcqQues] = useState(false);
@@ -87,7 +88,9 @@ function QuestionManagement() {
     }, []);
 
     return (
-        <div className="ml-64 mt-16 flex flex-col items-center w-full">
+        <div className='flex'>
+        <AdminSidebar/>
+            <div className="ml-64 mt-16 flex flex-col items-center w-full">
             <div className="mb-4 flex gap-4">
             <button
                 className="w-32 p-3 bg-blue-600 text-white rounded-md"
@@ -208,6 +211,7 @@ function QuestionManagement() {
             ))}
 
             </div>
+        </div>
         </div>
     );
 }

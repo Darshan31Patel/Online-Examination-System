@@ -58,6 +58,7 @@ function AddQuesForm() {
       setQuestion("");
       setCategory("");
       setOptions([{ text: "", isCorrect: false }]);
+      alert("Question added successfully")
 
     } catch (error) {
       console.log("Error Occured")

@@ -1,5 +1,6 @@
 package com.onlineExamSystem.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,6 +24,7 @@ public class ProgrammingQuestion {
 	private Long quesId;
 	
 	private String question;
+	@Column(columnDefinition = "TEXT")
 	private String answer;
 	
 	@Enumerated(EnumType.STRING)

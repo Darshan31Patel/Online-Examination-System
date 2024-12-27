@@ -69,19 +69,19 @@ function EditExamAdmin() {
       programQues: formattedProgQues,
     };
 
-    console.log("Exam Data to Update:", updatedExamData);
+    // console.log("Exam Data to Update:", updatedExamData);
 
     try {
-      // const response = await axios.put(
-      //   `http://localhost:8080/admin/exam/updateExam/${id}`,
-      //   updatedExamData,
-      //   {
-      //     headers: { Authorization: `Bearer ${token}` },
-      //   }
-      // );
-      // console.log(response.data);
-      // alert("Exam updated successfully!");
-      // navigate("/admin/dashboard");
+      const response = await axios.put(
+        `http://localhost:8080/admin/exam/updateExam/${id}`,
+        updatedExamData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log(response.data);
+      alert("Exam updated successfully!");
+      navigate("/admin/examManagement");
     } catch (error) {
       console.error("Error updating exam:", error);
       alert("Failed to update exam. Please try again.");
@@ -125,7 +125,7 @@ function EditExamAdmin() {
   }, [id]);
 
   const handleClick = () => {
-    navigate("/admin/dashboard");
+    navigate("/admin/examManagement");
   };
 
   return (

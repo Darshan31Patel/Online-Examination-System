@@ -10,6 +10,11 @@ import StudentDashboard from './pages/StudentDashboard';
 import ExamPage from './pages/ExamPage';
 import ResultPageAdmin from './pages/ResultPageAdmin';
 import EditExamAdmin from './pages/EditExamAdmin';
+import StudentManagement from './pages/StudentManagementPAge';
+import QuestionManagement from './pages/QuestionManagementPage';
+import ExamManagement from './pages/ExamManagementPage';
+import StudentExam from './pages/StudentExamPage';
+import StudentExamResult from './pages/StudentExamResultPage';
 
 
 function App() {
@@ -22,7 +27,12 @@ function App() {
         <Route path='admin/signup' element={<AdminSignUp/>}/>
         <Route path='student/login' element={<StudentLoginPage />} />
         <Route path='admin/dashboard' element={<AdminDashboard/>}/>
+        <Route path='admin/studentManagement' element={<StudentManagement/>}/>
+        <Route path='admin/questionManagement' element={<QuestionManagement/>}/>
+        <Route path='admin/examManagement' element={<ExamManagement/>}/>
         <Route path='student/dashboard' element={<StudentDashboard/>}/>
+        <Route path='student/exam' element={<StudentExam/>}/>
+        <Route path='student/result' element={<StudentExamResult/>}/>
         <Route path='student/exam/:id' element={<ExamPage/>}/>
         <Route path='examResult/:id' element={<ResultPageAdmin/>}/>
         <Route path='editExam/:id' element={<EditExamAdmin/>}/>

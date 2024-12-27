@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import StudentSidebar from '../component/StudentSidebar';
 
 function StudentExam() {
 
@@ -42,7 +43,9 @@ function StudentExam() {
     },[])
 
   return (
-    <div className="ml-64 mt-16 flex flex-col items-center w-full">
+    <div className='flex'>
+    <StudentSidebar/>
+      <div className="ml-64 mt-16 flex flex-col items-center w-full">
     {/* Upcoming Exams Section */}
     {upcomingExam.length > 0 && (
       <div className="w-full flex flex-col items-center mb-8">
@@ -109,6 +112,7 @@ function StudentExam() {
       </div>
     )}
   </div>
+    </div>
   )
 }
 

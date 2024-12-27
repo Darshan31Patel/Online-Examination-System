@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import AddExamForm from './AddExamForm'
+import AddExamForm from '../component/AddExamForm'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import AdminSidebar from '../component/AdminSidebar'
 
 function ExamManagement() {
 
@@ -37,7 +38,9 @@ function ExamManagement() {
     },[])
 
   return (
-    <div className="ml-64 mt-16 flex flex-col items-center w-full">
+    <div className='flex'>
+    <AdminSidebar/>
+        <div className="ml-64 mt-16 flex flex-col items-center w-full">
       <div className="mb-4">
             <button 
                 className="w-32 p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700" 
@@ -81,6 +84,7 @@ function ExamManagement() {
         ))}
         </div>
 
+    </div>
     </div>
   )
 }

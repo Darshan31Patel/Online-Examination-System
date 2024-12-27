@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import AddStudentForm from './AddStudentForm'
-import StudentDetailsContainer from './StudentDetailsContainer';
+import AddStudentForm from '../component/AddStudentForm'
+import StudentDetailsContainer from '../component/StudentDetailsContainer';
 import axios from 'axios';
+import AdminSidebar from '../component/AdminSidebar';
 
 function StudentManagement() {
 
@@ -53,7 +54,9 @@ function StudentManagement() {
     },[])
 
   return (
-    <div className="ml-64 mt-16 flex flex-col items-center w-full">
+    <div className='flex'>
+    <AdminSidebar/>
+        <div className="ml-64 mt-16 flex flex-col items-center w-full">
         <div className='mb-4'>
             <button className="w-32 p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={addStudent}>
             Add Student
@@ -67,6 +70,7 @@ function StudentManagement() {
             students.map((student)=>(<StudentDetailsContainer key={student.studentId} student={student} onUpdate={handleUpdateStudent} onDelete={handleDeleteStudent} />))
             }
         </div>
+    </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import StudentSidebar from '../component/StudentSidebar'
 
 function StudentExamResult() {
 
@@ -25,7 +26,9 @@ function StudentExamResult() {
     }, [])
 
     return (
-        <div className="ml-64 mt-16 flex flex-col items-center w-full">
+       <div className='flex'>
+       <StudentSidebar/>
+         <div className="ml-64 mt-16 flex flex-col items-center w-full">
             <h1 className="text-3xl font-semibold mb-8">Exam Results</h1>
             <div className='w-full flex flex-wrap justify-center gap-8'>
                 {resultData.map((result, index) => (
@@ -40,6 +43,7 @@ function StudentExamResult() {
                 ))}
             </div>
         </div>
+       </div>
     )
 }
 
