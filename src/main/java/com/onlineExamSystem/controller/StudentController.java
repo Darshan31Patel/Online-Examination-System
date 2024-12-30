@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,8 @@ public class StudentController {
 	@Autowired
 	ExamService examService;
 	
+	private Logger logger = LoggerFactory.getLogger(StudentController.class);
+	
 	private String getTokenFromRequest(HttpServletRequest request) {
         String token = jwtUtil.getTokenFromRequest(request);
         if (token == null || token.isEmpty()) {
@@ -52,8 +56,10 @@ public class StudentController {
 		if (token!=null) {
 			Map<String, String> response = new HashMap<String, String>();
 			response.put("token", token);
+			logger.info("Student Login Successfull... emailID:{}",loginRequest.getEmail());
 			return ResponseEntity.ok(response);
 		}else {
+			logger.error("Student Login failed");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error","login failed"));
 		}
 	}

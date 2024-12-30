@@ -1,0 +1,8 @@
+2024-12-29 15:22:47 - INFO  c.o.controller.AdminController - Admin created with name:om email:om@gmail.com
+2024-12-29 15:23:00 - INFO  c.o.controller.AdminController - Login successfull... emailId:om@gmail.com
+2024-12-29 15:29:02 - INFO  c.o.controller.AdminController - Admin Login successfull... emailId:darshan@gmail.com
+2024-12-29 15:29:08 - INFO  c.o.controller.AdminController - Admin Logout Successfull
+2024-12-29 15:37:44 - INFO  c.o.controller.StudentController - Student Login Successfull... emailID:harsh@gmail.com
+2024-12-29 15:38:15 - INFO  c.o.controller.AdminController - Logout Successfull
+2024-12-29 15:38:45 - INFO  c.o.controller.AdminController - Admin Login successfull... emailId:akshu@gmail.com
+2024-12-29 15:39:02 - INFO  c.o.controller.AdminController - Logout Successfull

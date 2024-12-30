@@ -15,12 +15,12 @@ function LoginPage() {
     
     try{
         const response = await axios.post('http://localhost:8080/admin/login', data);
-        console.log("data send");
+        // console.log("data send");
         // console.log(response);
         
         if(response.status === 200){
           localStorage.setItem('token', response.data.token);
-          console.log("token stored")
+          // console.log("token stored")
           navigate('/admin/dashboard')
         }
     }catch(error){

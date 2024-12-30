@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import CodeEditor from '../component/CodeEditorComponent/CodeEditor';
+import { ChakraProvider } from '@chakra-ui/react';
 
 function ExamPage() {
   const { id } = useParams();
@@ -134,19 +136,26 @@ function ExamPage() {
       : examData.programQues[currentIndex - (examData.mcqQues?.length || 0)];
 
   return (
-    <div className="mt-16 flex flex-col items-center w-full">
-      {!submit &&
+      <div className="mt-16 flex flex-col items-center w-full">
+      {!submit && (
         <div className="w-3/4 bg-white shadow-md p-6 rounded-lg">
-          <h1 className="text-3xl font-bold mb-4 text-center uppercase">{examData.examName}</h1>
-          <div className="text-center text-red-600 font-bold mb-4">Time Left: {timeLeft}</div>
-
-          <div className="text-center mb-6">
-            <h2 className="font-semibold">Question {currentIndex + 1} of {totalQuestions}</h2>
+          <h1 className="text-3xl font-bold mb-4 text-center uppercase">
+            {examData.examName}
+          </h1>
+          <div className="text-center text-red-600 font-bold mb-4">
+            Time Left: {timeLeft}
           </div>
 
-          <div className="mb-6 h-48">
+          <div className="text-center mb-6">
+            <h2 className="font-semibold">
+              Question {currentIndex + 1} of {totalQuestions}
+            </h2>
+          </div>
+
+          <div className="h-auto mb-6">
             <p className="mb-3">
-              {currentQuestion?.question} ({currentQuestion?.category || currentQuestion?.difficulty})
+              {currentQuestion?.question} (
+              {currentQuestion?.category || currentQuestion?.difficulty})
             </p>
 
             {currentQuestion?.options ? (
@@ -157,8 +166,13 @@ function ExamPage() {
                       type="radio"
                       name={`question-${currentQuestion.questionId}`}
                       value={option.optionText}
-                      checked={userAnswer[currentQuestion.questionId]?.optionText === option.optionText}
-                      onChange={() => handleOptionChange(currentQuestion.questionId, option)}
+                      checked={
+                        userAnswer[currentQuestion.questionId]?.optionText ===
+                        option.optionText
+                      }
+                      onChange={() =>
+                        handleOptionChange(currentQuestion.questionId, option)
+                      }
                       className="mr-3"
                     />
                     <label>{option.optionText}</label>
@@ -166,12 +180,10 @@ function ExamPage() {
                 ))}
               </div>
             ) : (
-              <textarea
-                placeholder="Enter your programming answer"
-                className="w-full h-32 border rounded p-2"
-                value={userAnswer[currentQuestion.quesId] || ""}
-                onChange={(e) => handleProgrammingAnswer(currentQuestion.quesId, e.target.value)}
-              />
+              <div className="w-full h-[500px] border rounded">
+                <CodeEditor value={userAnswer[currentQuestion.quesId] || ""}
+                            onChange={(value) => handleProgrammingAnswer(currentQuestion.quesId, value)} />
+              </div>
             )}
           </div>
 
@@ -179,41 +191,45 @@ function ExamPage() {
             <button
               className="bg-gray-500 text-white py-2 px-4 rounded"
               onClick={() => setCurrentIndex(currentIndex - 1)}
-              disabled={currentIndex === 0}
-            >
+              disabled={currentIndex === 0}>
               Previous
             </button>
+            
             <button
               className="bg-blue-500 text-white py-2 px-4 rounded"
               onClick={() => setCurrentIndex(currentIndex + 1)}
-              disabled={currentIndex === totalQuestions - 1}
-            >
+              disabled={currentIndex === totalQuestions - 1}>
               Next
             </button>
           </div>
-
-          <div className="mt-6 text-center">
+          <div className='text-center mt-6'>
             <button
-              className="bg-green-500 text-white py-2 px-4 rounded"
-              onClick={handleSubmit}
-              disabled={submit}
-            >
-              Submit
-            </button>
+                className="bg-green-500 text-white py-2 px-4 rounded"
+                onClick={handleSubmit}
+                disabled={submit}
+              >
+                Submit
+              </button>
           </div>
-        </div>}
+        </div>
+      )}
 
-      {submit && 
+      {submit && (
         <div className="bg-green-100 text-green-800 border border-green-300 p-6 rounded-lg text-center max-w-md mx-auto">
           <p className="text-xl font-semibold mb-4">Exam Submitted Successfully.</p>
-          <p className="text-xl font-semibold mb-4">Your Score : {calculateMarks(userAnswer)}</p>
+          <p className="text-xl font-semibold mb-4">
+            Your Score : {calculateMarks(userAnswer)}
+          </p>
           <button
             onClick={handleHomePage}
-            className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-300">
+            className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-300"
+          >
             Back to Home Page
           </button>
-        </div>}
-    </div>
+        </div>
+      )}
+  </div>
+
   );
 }
 

@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -49,6 +51,8 @@ public class AdminController {
 	@Autowired
 	JwtUtil jwtUtil;
 	
+	private Logger logger = LoggerFactory.getLogger(AdminController.class);
+	
 	
 	@GetMapping("/admin/test")
 	public String test() {
@@ -60,8 +64,10 @@ public class AdminController {
 	public ResponseEntity<Map<String, String>> registerAdmin(@RequestBody Admin admin) {
 	    try {
 	        String responseMessage = adminService.saveDetails(admin);
+	        logger.info("Admin created with name:{} email:{}",admin.getName(),admin.getEmail());
 	        return ResponseEntity.ok(Map.of("message", responseMessage));
-	    } catch (Exception e) {	        
+	    } catch (Exception e) {	    
+	    	logger.error("Admin Registration failed");
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Registration failed"));
 	    }
 	}
@@ -74,8 +80,10 @@ public class AdminController {
 		if (token!=null) {
 			Map<String, String> response = new HashMap<String, String>();
 			response.put("token", token);
+			logger.info("Admin Login successfull... emailId:{}",loginRequest.getEmail());
 			return ResponseEntity.ok(response);
 		}else {
+			logger.error("Admin Login failed");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error","login failed"));
 		}
 	}
@@ -86,6 +94,7 @@ public class AdminController {
 		if(token!=null) {
 			Map<String, String> response = new HashMap<String, String>();
 			response.put("token", null);
+			logger.info("Logout Successfull");
 			return ResponseEntity.ok(response);
 		}else {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error","logout failed"));
@@ -110,9 +119,10 @@ public class AdminController {
 				student.setAdminName(admin);
 //				System.out.println(student.toString());
 				studentService.addStudent(student, adminId);
-				
+//				logger.info("Student added by admin successfully");
 				return "Student added successfully";
 			}else {
+//				logger.error("Error in adding student");
 				return "Unauthorized or invalid token";
 			}
 		} catch (Exception e) {

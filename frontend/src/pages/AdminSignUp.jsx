@@ -22,7 +22,14 @@ function AdminSignUp() {
             const response = await axios.post("http://localhost:8080/admin/signup",data)
             if(response.status === 200){
                 console.log("Admin created successfully");
-                navigate("/admin/login");
+                alert("Account created successfully")
+                const loginData = {email:data.email, password:data.password}
+                const loginResponse = await axios.post('http://localhost:8080/admin/login',loginData)
+                if(loginResponse.status===200){
+                  localStorage.setItem('token', response.data.token);
+                  console.log("token stored")
+                  navigate("/admin/dashboard");
+                }
             }
         } catch (error) {
             console.log("Error occured in creating admin");
