@@ -19,13 +19,14 @@ function AdminSidebar() {
             },
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
         
         localStorage.removeItem("token");
-        navigate("/");
       } 
     } catch (error) {
       console.error("Logout failed:"); 
+    }finally{
+      navigate("/");
     }
   };
 

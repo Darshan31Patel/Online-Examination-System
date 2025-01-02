@@ -42,10 +42,10 @@ function AddExamForm() {
       programQues: formattedProgQues, 
     };
 
-    console.log("Exam Data to Submit:", examData);
+    // console.log("Exam Data to Submit:", examData);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:8080/admin/exam/createExam",
         examData,
         {
@@ -54,7 +54,7 @@ function AddExamForm() {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       alert("Exam created successfully");
 
       // Reset form fields
@@ -67,7 +67,7 @@ function AddExamForm() {
       setSelectedQuestions([]);
       setSelectedProgQues([]);
     } catch (error) {
-      console.error("Error creating exam:", error);
+      // console.error("Error creating exam:", error);
       alert("Failed to create exam. Please try again.");
     }
   };

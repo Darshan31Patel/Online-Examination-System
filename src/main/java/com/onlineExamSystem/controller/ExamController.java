@@ -1,6 +1,7 @@
 package com.onlineExamSystem.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,10 +12,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.onlineExamSystem.config.JwtUtil;
 import com.onlineExamSystem.entity.Admin;
 import com.onlineExamSystem.entity.Exam;
 import com.onlineExamSystem.entity.ExamSubmission;
+import com.onlineExamSystem.entity.McqAnswer;
+import com.onlineExamSystem.entity.ProgrammingAnswer;
 import com.onlineExamSystem.entity.Student;
 import com.onlineExamSystem.repository.ExamRepository;
 import com.onlineExamSystem.repository.StudentRepository;
@@ -39,6 +44,8 @@ public class ExamController {
 	StudentRepository studentRepository;
 	@Autowired
 	ExamRepository examRepository;
+	@Autowired
+	ObjectMapper objectMapper;
 	
 	
 	private Admin verifyAdmin(String token) {
@@ -100,6 +107,27 @@ public class ExamController {
 		examSubmission.setExam(exam);
 		return examService.saveMarks(examSubmission);
 	}
+	
+	@PostMapping("/exam/save/programmingAnswer")
+	public List<ProgrammingAnswer> saveProgrammingAnswer(@RequestBody Map<String, Object> payload) {
+		List<ProgrammingAnswer> programmingAnswers = objectMapper.convertValue(payload.get("programmingAnswers"), new TypeReference<List<ProgrammingAnswer>>() {});
+	    ExamSubmission examSubmission = objectMapper.convertValue(payload.get("examSubmission"), ExamSubmission.class);
+		for (ProgrammingAnswer programmingAnswer : programmingAnswers) {
+			programmingAnswer.setSubmission(examSubmission);
+		}
+		return examService.saveProgrammingAnswer(programmingAnswers);
+	}
+	
+	@PostMapping("/exam/save/mcqAnswer")
+	public List<McqAnswer> saveMcqAnswer(@RequestBody Map<String, Object> payload){
+		List<McqAnswer> mcqAnswers = objectMapper.convertValue(payload.get("mcqAnswers"), new TypeReference<List<McqAnswer>>() {});
+	    ExamSubmission examSubmission = objectMapper.convertValue(payload.get("examSubmission"), ExamSubmission.class);
+		for (McqAnswer mcqAnswer : mcqAnswers) {
+			mcqAnswer.setSubmission(examSubmission);
+		}
+		return examService.saveMcqAnswers(mcqAnswers);
+	}
+	
 	
 	@GetMapping("/exam/result/{examId}")
 	public List<ExamSubmission> getMarksByExam(@PathVariable Long examId) {

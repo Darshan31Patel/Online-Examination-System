@@ -2,17 +2,17 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import CodeEditor from '../component/CodeEditorComponent/CodeEditor';
-import { ChakraProvider } from '@chakra-ui/react';
 
 function ExamPage() {
   const { id } = useParams();
   const [examData, setExamData] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [userAnswer, setUserAnswer] = useState({});
+  const [mcqAnswers, setMcqAnswers] = useState({});
+  const [programmingAnswers, setProgrammingAnswers] = useState({});
   const [submit, setSubmit] = useState(false);
   const [timeLeft, setTimeLeft] = useState("");
   const navigate = useNavigate();
-  const [handleSubmitData,setHandleSubmitData] = useState(false)
+  const [handleSubmitData, setHandleSubmitData] = useState(false);
 
   const getData = async () => {
     try {
@@ -29,57 +29,97 @@ function ExamPage() {
   };
 
   const handleOptionChange = (questionId, option) => {
-    setUserAnswer((prev) => {
+    setMcqAnswers((prev) => {
       const updatedAnswers = { ...prev };
-      updatedAnswers[questionId] = option; 
+      updatedAnswers[questionId] = option;
       return updatedAnswers;
     });
   };
 
   const handleProgrammingAnswer = (quesId, answer) => {
-    setUserAnswer((prev) => {
+    setProgrammingAnswers((prev) => {
       const updatedAnswers = { ...prev };
-      updatedAnswers[quesId] = answer; 
+      updatedAnswers[quesId] = answer;
       return updatedAnswers;
     });
   };
 
-  const calculateMarks = (data) => {
+  const calculateMarks = (mcqAnswers) => {
     const marksPerQues = 4;
     let marks = 0;
 
-    Object.values(data).forEach((answer) => {
+    // Calculate marks for MCQ questions
+    Object.values(mcqAnswers).forEach((answer) => {
       if (answer?.isCorrect) {
         marks += marksPerQues;
       }
     });
+
     return marks;
   };
 
   const handleSubmit = async () => {
     setSubmit(true);
-    setHandleSubmitData(true)
-    console.log("Submitted Answers:", userAnswer);
-    const marks = calculateMarks(userAnswer);
-    const status = marks >= examData.passingMarks; 
-    const data = {
-      score: marks,
-      isPassed: status,
-      exam: examData,
-    };
-
+    setHandleSubmitData(true);
+  
     try {
+      const marks = calculateMarks(mcqAnswers);
+      const status = marks >= examData.passingMarks;
+  
+      const data = {
+        score: marks,
+        isPassed: status,
+        exam: examData,
+      };
+  
       const token = localStorage.getItem("token");
       const response = await axios.post("http://localhost:8080/exam/saveMarks", data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
+      const submissionData = response.data;
+      // console.log( submissionData);
+  
+      const mcqAnswerData = Object.entries(mcqAnswers).map(([key, mcq]) => ({
+        ques: examData.mcqQues.find(q => q.questionId===Number(key)),
+        selectedOption: mcq,
+      }));
+  
+      const programAnswerData = Object.entries(programmingAnswers).map(([key, program]) => ({
+        ques: examData.programQues.find(q => q.quesId===Number(key)),
+        ansText: program,
+      }));
+  
+      console.log("MCQ Answer Data:", mcqAnswerData);
+      console.log("Programming Answer Data:", programAnswerData);
+  
+      try {
+        const mcqPayload = {
+          mcqAnswers: mcqAnswerData,
+          examSubmission: submissionData,
+        };
+        const mcqResponse = await axios.post("http://localhost:8080/exam/save/mcqAnswer", mcqPayload);
+        console.log("MCQ answers saved successfully:", mcqResponse.data);
+      } catch (mcqError) {
+        console.error("Error saving MCQ answers:", mcqError);
+      }
+  
+      try {
+        const programPayload = {
+          programmingAnswers: programAnswerData,
+          examSubmission: submissionData,
+        };
+        const programResponse = await axios.post("http://localhost:8080/exam/save/programmingAnswer", programPayload);
+        console.log("Programming answers saved successfully:", programResponse.data);
+      } catch (programError) {
+        console.error("Error saving programming answers:", programError);
+      }
     } catch (error) {
-      console.log("Error saving marks");
+      console.error("Error saving marks or initializing submission:", error);
     }
   };
+  
 
   const calculateTimeLeft = () => {
     const now = new Date();
@@ -104,15 +144,47 @@ function ExamPage() {
   };
 
   useEffect(() => {
+    const preventDefaultAction = (e) => e.preventDefault();
+    const addEventListeners = () => {
+      document.addEventListener('copy', preventDefaultAction);
+      document.addEventListener('paste', preventDefaultAction);
+      window.addEventListener('keydown', handleKeyDown);
+    };
+    const removeEventListeners = () => {
+      document.removeEventListener('copy', preventDefaultAction);
+      document.removeEventListener('paste', preventDefaultAction);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+
+    const handleBeforeUnload = (e) => {
+      const msg  = "Are you sure you want to leave?"
+      e.returnValue = msg
+      return msg
+    }
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    const handleKeyDown = (e) => {
+      if (e.ctrlKey || e.altKey) {
+        e.preventDefault();
+      }
+      if(e.altKey && e.key === 'Tab'){
+        e.preventDefault()
+      }
+    }
     getData();
-  }, [id]);
+    addEventListeners();
+
+    return()=> {
+      removeEventListeners();
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    }
+  }, []);
 
   useEffect(() => {
     if (submit && !handleSubmitData) {
       handleSubmit();
     }
   }, [submit, handleSubmitData]);
-  
 
   useEffect(() => {
     if (examData) {
@@ -136,7 +208,20 @@ function ExamPage() {
       : examData.programQues[currentIndex - (examData.mcqQues?.length || 0)];
 
   return (
-      <div className="mt-16 flex flex-col items-center w-full">
+    <div className="mt-16 flex flex-rows w-full">
+      <div className='w-1/4'>
+        <h1 className='w-full text-center mb-4 text-lg font-semibold'>Question Status</h1>
+          <div className='w-full flex flex-wrap'>
+          {
+          Array.from({length: totalQuestions},(_,i)=>{
+            const isAnswered = i < (examData.mcqQues?.length || 0) ? mcqAnswers[examData.mcqQues[i]?.questionId] : programmingAnswers[examData.programQues[i - (examData.mcqQues?.length || 0)]?.quesId]; 
+            return (
+              <button className={`w-12 h-12 text-center flex items-center justify-center border-black rounded m-2 ${isAnswered ? "bg-green-600" : "bg-red-600"} text-white`} onClick={()=>setCurrentIndex(i)}>{i+1}</button>
+            )
+          })
+        }
+          </div>
+      </div>
       {!submit && (
         <div className="w-3/4 bg-white shadow-md p-6 rounded-lg">
           <h1 className="text-3xl font-bold mb-4 text-center uppercase">
@@ -166,10 +251,7 @@ function ExamPage() {
                       type="radio"
                       name={`question-${currentQuestion.questionId}`}
                       value={option.optionText}
-                      checked={
-                        userAnswer[currentQuestion.questionId]?.optionText ===
-                        option.optionText
-                      }
+                      checked={mcqAnswers[currentQuestion.questionId]?.optionText === option.optionText}
                       onChange={() =>
                         handleOptionChange(currentQuestion.questionId, option)
                       }
@@ -181,7 +263,7 @@ function ExamPage() {
               </div>
             ) : (
               <div className="w-full h-[500px] border rounded">
-                <CodeEditor value={userAnswer[currentQuestion.quesId] || ""}
+                <CodeEditor value={programmingAnswers[currentQuestion.quesId] || ""}
                             onChange={(value) => handleProgrammingAnswer(currentQuestion.quesId, value)} />
               </div>
             )}
@@ -194,7 +276,7 @@ function ExamPage() {
               disabled={currentIndex === 0}>
               Previous
             </button>
-            
+
             <button
               className="bg-blue-500 text-white py-2 px-4 rounded"
               onClick={() => setCurrentIndex(currentIndex + 1)}
@@ -217,19 +299,16 @@ function ExamPage() {
       {submit && (
         <div className="bg-green-100 text-green-800 border border-green-300 p-6 rounded-lg text-center max-w-md mx-auto">
           <p className="text-xl font-semibold mb-4">Exam Submitted Successfully.</p>
-          <p className="text-xl font-semibold mb-4">
-            Your Score : {calculateMarks(userAnswer)}
-          </p>
+          <p className="text-lg">You scored {calculateMarks(mcqAnswers, programmingAnswers)} marks.</p>
           <button
+            className="mt-6 bg-gray-800 text-white py-2 px-4 rounded"
             onClick={handleHomePage}
-            className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-300"
           >
-            Back to Home Page
+            Back to Dashboard
           </button>
         </div>
       )}
-  </div>
-
+    </div>
   );
 }
 

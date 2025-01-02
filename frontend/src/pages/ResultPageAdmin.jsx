@@ -50,12 +50,13 @@ function ResultPageAdmin() {
                     <div className="mb-8">
                         <h2 className="text-2xl font-semibold text-blue-600">Exam ID: {examDetails.examId}</h2>
                         <h3 className="text-xl font-medium text-gray-700">Exam Name: {examDetails.examName}</h3>
+                        <h3 className="text-xl font-medium text-gray-700">Total Student appeared: {resultData.length}</h3>
                     </div>
                 )}
                 
                 {/* Passed Students Container */}
                 <div>
-                    <h2 className="text-xl font-semibold text-green-600 mb-4">Passed Students</h2>
+                    <h2 className="text-xl font-semibold text-green-600 mb-4">Passed Students: {passedStudents.length}</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
                         {passedStudents.length > 0 ? (
                             passedStudents.map((item, index) => (
@@ -82,7 +83,7 @@ function ResultPageAdmin() {
 
                 {/* Failed Students Container */}
                 <div className="mt-8">
-                    <h2 className="text-xl font-semibold text-red-600 mb-4">Failed Students</h2>
+                    <h2 className="text-xl font-semibold text-red-600 mb-4">Failed Students: {failedStudents.length}</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
                         {failedStudents.length > 0 ? (
                             failedStudents.map((item, index) => (

@@ -20,15 +20,15 @@ function StudentSidebar() {
             },
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
         
         localStorage.removeItem("token");
-        navigate("/");
-      } else{
-        alert("You are already Logged Out")
-      }
+      } 
+      
     } catch (error) {
       console.error("Logout failed:"); 
+    }finally{
+      navigate("/")
     }
   };
 

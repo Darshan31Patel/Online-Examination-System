@@ -4,6 +4,7 @@ import LanguageSelector from './LanguageSelector'
 import { CODE_SNIPPETS } from './Constants';
 import { Editor } from '@monaco-editor/react';
 import Output from './Output';
+import * as monaco from 'monaco-editor'
 
 function CodeEditor({value, onChange}) {
   const editorRef = useRef();
@@ -12,6 +13,8 @@ function CodeEditor({value, onChange}) {
   const onMount = (editor) => {
     editorRef.current = editor;
     editor.focus();
+    editor.addCommand(monaco.KeyMod.CtrlCmd  | monaco.KeyCode.KeyC, (e) => e.preventDefault());
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyV, (e) => e.preventDefault());
   };
 
   const onSelect = (language) => {
@@ -34,7 +37,7 @@ function CodeEditor({value, onChange}) {
             theme="vs-dark"
             language={language}
             defaultValue={CODE_SNIPPETS[language]}
-            value={value}
+            value={value || CODE_SNIPPETS[language]}
             onChange={onChange}
             onMount={onMount}
           />

@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import com.onlineExamSystem.entity.Admin;
 import com.onlineExamSystem.entity.Exam;
 import com.onlineExamSystem.entity.ExamSubmission;
+import com.onlineExamSystem.entity.McqAnswer;
 import com.onlineExamSystem.entity.McqQuestion;
+import com.onlineExamSystem.entity.ProgrammingAnswer;
 import com.onlineExamSystem.entity.ProgrammingQuestion;
 import com.onlineExamSystem.entity.Student;
 import com.onlineExamSystem.repository.ExamRepository;
 import com.onlineExamSystem.repository.ExamSubmissionRepository;
+import com.onlineExamSystem.repository.McqAnswerRepository;
 import com.onlineExamSystem.repository.McqQuestionRepository;
+import com.onlineExamSystem.repository.ProgrammingAnswerRepository;
 import com.onlineExamSystem.repository.ProgrammingQuestionRepository;
 
 @Service
@@ -27,6 +31,10 @@ public class ExamService {
 	ProgrammingQuestionRepository programmingQuestionRepository;
 	@Autowired
 	ExamSubmissionRepository examSubmissionRepository;
+	@Autowired
+	ProgrammingAnswerRepository programmingAnswerRepository;
+	@Autowired
+	McqAnswerRepository mcqAnswerRepository;
 	
 	public void createExam(Exam exam) {
 		List<McqQuestion> mcqQuestions = mcqQuestionRepository.findAllById(exam.getMcqQues().stream().map(McqQuestion::getQuestionId).toList());
@@ -60,10 +68,18 @@ public class ExamService {
 		return examSubmissionRepository.save(examSubmission);
 	}
 	
+	public List<ProgrammingAnswer> saveProgrammingAnswer(List<ProgrammingAnswer> programmingAnswers) {
+		return programmingAnswerRepository.saveAll(programmingAnswers);
+	}
+	
+	public List<McqAnswer> saveMcqAnswers(List<McqAnswer> mcqAnswers){
+		return mcqAnswerRepository.saveAll(mcqAnswers);
+	}
+	
 	public List<ExamSubmission> getMarksByExamId(Long examId) {
 		Exam exam = getExamById(examId);
 		return examSubmissionRepository.findByExam(exam);
-	}
+	}				
 	
 	public List<ExamSubmission> getMarksByStudent(Student student) {
 		return examSubmissionRepository.findByStudent(student);

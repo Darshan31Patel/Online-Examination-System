@@ -14,7 +14,7 @@ function AddProgQuesForm() {
             question:question, answer:answer, difficulty: difficulty
         }
 
-        const response = await axios.post("http://localhost:8080/admin/progQues/addQues",data,
+       await axios.post("http://localhost:8080/admin/progQues/addQues",data,
             {
                 headers: {
                   Authorization: `Bearer ${token}`,
