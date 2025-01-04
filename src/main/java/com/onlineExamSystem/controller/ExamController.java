@@ -1,5 +1,6 @@
 package com.onlineExamSystem.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -73,8 +74,20 @@ public class ExamController {
         Admin admin = verifyAdmin(token);
         exam.setAdmin(admin);
 		examService.createExam(exam);
-		System.out.println("Exam created successfully");
+//		System.out.println("Exam created successfully");
 		return "Exam created successfully";
+	}
+	
+	@PostMapping("/admin/exam/autoExamCreate")
+	public Exam autoExamCreate(@RequestBody Map<String, String> examData, HttpServletRequest request) {
+		System.out.println(examData);
+		String token = getTokenFromRequest(request);
+        Admin admin = verifyAdmin(token);
+		Exam exam = examService.autoCreateExam(examData);
+		exam.setAdmin(admin);
+		System.out.println(exam);
+//		return exam;
+		return examRepository.save(exam);
 	}
 	
 	@PutMapping("/admin/exam/updateExam/{id}")

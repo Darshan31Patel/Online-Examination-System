@@ -11,6 +11,7 @@ function AddExamForm() {
   const [progQues, setProgQues] = useState([]); 
   const [selectedProgQues, setSelectedProgQues] = useState([]); 
 
+
   const handleQuestionSelect = (questionId) => {
     setSelectedQuestions((prev) =>
       prev.some((q) => q.questionId === questionId)
@@ -112,8 +113,8 @@ function AddExamForm() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg">
+    <div className="flex justify-center w-full items-center bg-gray-100">
+      <div className="w-full p-6 bg-white shadow-md rounded-lg">
         <h1 className="text-2xl text-center mb-6 font-bold">Enter Exam Details</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -168,7 +169,7 @@ function AddExamForm() {
                       className="mr-2"
                     />
                     <label htmlFor={`question-${question.questionId}`} className="text-sm">
-                      {question.question} ({question.category})
+                      {question.question} ({question.category}) ({question.difficulty})
                     </label>
                   </div>
                 ))

@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 function AddQuesForm() {
   const [question,setQuestion] = useState("");
   const [category, setCategory] = useState("");
+  const [difficulty,setDifficulty] = useState("")
   const [options, setOptions] = useState([{text:"", isCorrect:false}])
 
   const handleOptionChange = (index,field,value) =>{
@@ -26,7 +27,7 @@ function AddQuesForm() {
       }
 
       // Add question
-      const questionData = {question:question,category:category}
+      const questionData = {question:question,category:category,difficulty:difficulty}
       // console.log(questionData);
       
       const response = await axios.post("http://localhost:8080/admin/mcqQues/add",
@@ -57,6 +58,7 @@ function AddQuesForm() {
       
       setQuestion("");
       setCategory("");
+      setDifficulty("")
       setOptions([{ text: "", isCorrect: false }]);
       alert("Question added successfully")
 
@@ -87,6 +89,17 @@ function AddQuesForm() {
             <option value="TECHNICAL">Technical</option>
             <option value="PROGRAMMING">Programming</option>
           </select>
+
+          {/* select difficulty */}
+          <select value={difficulty} 
+          onChange={(e) => setDifficulty(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded">
+            <option value="">Select Difficulty</option>
+            <option value="EASY">EASY</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="HARD">HARD</option>
+          </select>
+          
           {/* option */}
           <div>
             <h2 className='text-lg font-bold mb-2'>Options</h2>

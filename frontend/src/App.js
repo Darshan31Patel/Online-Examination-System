@@ -15,6 +15,7 @@ import QuestionManagement from './pages/QuestionManagementPage';
 import ExamManagement from './pages/ExamManagementPage';
 import StudentExam from './pages/StudentExamPage';
 import StudentExamResult from './pages/StudentExamResultPage';
+import StudentChangePassword from './pages/StudentChangePassword';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path='student/exam/:id' element={<ExamPage/>}/>
         <Route path='examResult/:id' element={<ResultPageAdmin/>}/>
         <Route path='editExam/:id' element={<EditExamAdmin/>}/>
+        <Route path='student/password' element={<StudentChangePassword/>}/>
       </Route>
     </Routes>
   );

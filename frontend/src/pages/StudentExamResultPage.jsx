@@ -14,7 +14,7 @@ function StudentExamResult() {
                     Authorization: `Bearer ${token}`
                 }
             })
-            console.log(response.data);
+            // console.log(response.data);
             setResultData(response.data)
         } catch (error) {
             console.log("Error fetching result data");

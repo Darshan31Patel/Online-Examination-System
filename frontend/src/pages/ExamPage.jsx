@@ -23,6 +23,8 @@ function ExamPage() {
         },
       });
       setExamData(response.data);
+      // console.log(examData);
+      
     } catch (error) {
       console.log("Error fetching exam data:", error);
     }
@@ -64,54 +66,74 @@ function ExamPage() {
   
     try {
       const marks = calculateMarks(mcqAnswers);
-      const status = marks >= examData.passingMarks;
+      // console.log("Marks:", marks);
   
+      const passingMarks = Number(examData.passingMarks);
+      // console.log("Passing Marks:", passingMarks);
+  
+      const status = marks >= passingMarks;
+      // console.log("Status (isPassed):", status);
+      
       const data = {
         score: marks,
-        isPassed: status,
+        passed: status,
         exam: examData,
       };
+      
+  // console.log(data);
   
       const token = localStorage.getItem("token");
       const response = await axios.post("http://localhost:8080/exam/saveMarks", data, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       });
       const submissionData = response.data;
-      // console.log( submissionData);
   
+      // Prepare MCQ answer data
       const mcqAnswerData = Object.entries(mcqAnswers).map(([key, mcq]) => ({
-        ques: examData.mcqQues.find(q => q.questionId===Number(key)),
+        ques: examData.mcqQues.find(q => q.questionId === Number(key)),
         selectedOption: mcq,
       }));
   
+      // Prepare programming answer data
       const programAnswerData = Object.entries(programmingAnswers).map(([key, program]) => ({
-        ques: examData.programQues.find(q => q.quesId===Number(key)),
+        ques: examData.programQues.find(q => q.quesId === Number(key)),
         ansText: program,
       }));
   
-      console.log("MCQ Answer Data:", mcqAnswerData);
-      console.log("Programming Answer Data:", programAnswerData);
+      // console.log("MCQ Answer Data:", mcqAnswerData);
+      // console.log("Programming Answer Data:", programAnswerData);
   
+      // Save MCQ answers
       try {
         const mcqPayload = {
           mcqAnswers: mcqAnswerData,
           examSubmission: submissionData,
         };
-        const mcqResponse = await axios.post("http://localhost:8080/exam/save/mcqAnswer", mcqPayload);
-        console.log("MCQ answers saved successfully:", mcqResponse.data);
+        const mcqResponse = await axios.post("http://localhost:8080/exam/save/mcqAnswer", mcqPayload, {
+          headers: {
+            "Content-Type": "application/json", 
+          },
+        });
+        // console.log("MCQ answers saved successfully:", mcqResponse.data);
       } catch (mcqError) {
         console.error("Error saving MCQ answers:", mcqError);
       }
   
+      // Save programming answers
       try {
         const programPayload = {
           programmingAnswers: programAnswerData,
           examSubmission: submissionData,
         };
-        const programResponse = await axios.post("http://localhost:8080/exam/save/programmingAnswer", programPayload);
-        console.log("Programming answers saved successfully:", programResponse.data);
+        const programResponse = await axios.post("http://localhost:8080/exam/save/programmingAnswer", programPayload, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        // console.log("Programming answers saved successfully:", programResponse.data);
       } catch (programError) {
         console.error("Error saving programming answers:", programError);
       }
@@ -119,6 +141,7 @@ function ExamPage() {
       console.error("Error saving marks or initializing submission:", error);
     }
   };
+  
   
 
   const calculateTimeLeft = () => {
@@ -216,7 +239,7 @@ function ExamPage() {
           Array.from({length: totalQuestions},(_,i)=>{
             const isAnswered = i < (examData.mcqQues?.length || 0) ? mcqAnswers[examData.mcqQues[i]?.questionId] : programmingAnswers[examData.programQues[i - (examData.mcqQues?.length || 0)]?.quesId]; 
             return (
-              <button className={`w-12 h-12 text-center flex items-center justify-center border-black rounded m-2 ${isAnswered ? "bg-green-600" : "bg-red-600"} text-white`} onClick={()=>setCurrentIndex(i)}>{i+1}</button>
+              <button key={i} className={`w-12 h-12 text-center flex items-center justify-center border-black rounded m-2 ${isAnswered ? "bg-green-600" : "bg-red-600"} text-white`} onClick={()=>setCurrentIndex(i)}>{i+1}</button>
             )
           })
         }

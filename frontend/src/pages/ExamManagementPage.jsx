@@ -3,10 +3,12 @@ import AddExamForm from '../component/AddExamForm'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import AdminSidebar from '../component/AdminSidebar'
+import AddAutoExamForm from '../component/AddAutoExamForm'
 
 function ExamManagement() {
 
     const[addForm,setAddForm] = useState(false) 
+    const[addAutoForm,setAddAutoForm] = useState(false) 
     const [examDetail,setExamDetail] = useState([])
     const navigate = useNavigate()
 
@@ -41,18 +43,27 @@ function ExamManagement() {
     <div className='flex'>
     <AdminSidebar/>
         <div className="ml-64 mt-16 flex flex-col items-center w-full">
-      <div className="mb-4">
+      <div className="mb-4 flex gap-4">
             <button 
-                className="w-32 p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700" 
-                onClick={() => setAddForm(!addForm)}>
+                className="w-32 p-3 mr-4 bg-blue-600 text-white rounded-md hover:bg-blue-700" 
+                onClick={() => {setAddForm(!addForm);
+                    if(addAutoForm) setAddAutoForm(false)
+                }}>
                 Create Exam
+            </button>
+            <button 
+                className="w-48 p-3 mr-4 bg-blue-600 text-white rounded-md hover:bg-blue-700" 
+                onClick={() => {setAddAutoForm(!addAutoForm)
+                if(addForm) setAddForm(false)}}>
+                Create Exam (Auto)
             </button>
         </div>
         <div className="w-full flex justify-center">
             {addForm && <AddExamForm/>}
+            {addAutoForm && <AddAutoExamForm/>}
         </div>
         <div className="w-full flex flex-wrap justify-center gap-6 p-4 bg-gray-100">
-    {!addForm &&
+    {!addForm && !addAutoForm  &&
         examDetail.map((exam, index) => (
             <div
                 key={index}

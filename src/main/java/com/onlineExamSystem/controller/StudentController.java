@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,8 @@ public class StudentController {
 	StudentRepository studentRepository;
 	@Autowired
 	ExamService examService;
+	
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	private Logger logger = LoggerFactory.getLogger(StudentController.class);
 	
@@ -76,6 +79,23 @@ public class StudentController {
 		return examDetaiList;
 		
 	} 
+	
+	@PostMapping("/student/changePassword")
+	public String changePassword(@RequestBody Map<String, String> data,HttpServletRequest request) {
+//		System.out.println(data);
+		String token = getTokenFromRequest(request);
+		Long studentId = jwtUtil.extractStudentId(token);
+		Student student = studentRepository.findByStudentId(studentId);
+		if(encoder.matches(data.get("oldPassword"), student.getPassword())) {
+			student.setPassword(encoder.encode(data.get("newPassword")));
+//			System.out.println(student);
+			studentRepository.save(student);
+			return "password change successfully";
+
+		}else {
+			return "Incorrect Old password";
+		}
+	}
 	
 
 	

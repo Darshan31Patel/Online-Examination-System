@@ -131,6 +131,7 @@ function QuestionManagement() {
                     {/* Question Title and Category */}
                     <h3 className="font-bold text-sm mb-2">{question.question}</h3>
                     <p className="text-xs text-gray-500 mb-3">Category: {question.category}</p>
+                    <p className="text-xs text-gray-500 mb-3">Difficulty: {question.difficulty}</p>
 
                     {/* Options */}
                     <div className="space-y-2">

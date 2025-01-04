@@ -1,0 +1,458 @@
+2025-01-03 10:38:27 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 10:38:27 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 10:38:37 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 10.929 seconds (process running for 12.864)
+2025-01-03 10:40:11 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 10:40:11 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 10:40:14 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.283 seconds (process running for 109.147)
+2025-01-03 10:40:15 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 10:40:15 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 10:40:17 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.67 seconds (process running for 112.348)
+2025-01-03 10:46:13 - INFO  c.o.controller.AdminController - Admin created with name:raj email:raj@gmail.com
+2025-01-03 10:46:27 - INFO  c.o.controller.AdminController - Admin Login successfull... emailId:raj@gmail.com
+2025-01-03 10:47:05 - INFO  c.o.controller.AdminController - Logout Successfull
+2025-01-03 10:48:10 - ERROR c.o.controller.StudentController - Student Login failed
+2025-01-03 10:48:40 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.IncorrectResultSizeDataAccessException: Query did not return a unique result: 2 results were returned] with root cause
+org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned
+	at org.hibernate.query.spi.AbstractSelectionQuery.uniqueElement(AbstractSelectionQuery.java:578)
+2025-01-03 10:49:46 - INFO  c.o.controller.StudentController - Student Login Successfull... emailID:harsh@gmail.com
+2025-01-03 11:10:47 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:10:47 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:10:50 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 3.26 seconds (process running for 1945.294)
+2025-01-03 11:13:43 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:13:43 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:13:46 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.718 seconds (process running for 2121.011)
+2025-01-03 11:21:08 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:21:08 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:21:11 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.633 seconds (process running for 2566.42)
+2025-01-03 11:22:30 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:22:30 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:22:31 - ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field encoder in com.onlineExamSystem.controller.StudentController required a bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' in your configuration.
+
+2025-01-03 11:26:28 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:26:28 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:26:30 - ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field encoder in com.onlineExamSystem.controller.StudentController required a bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' in your configuration.
+
+2025-01-03 11:29:41 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:29:41 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:29:43 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.21 seconds (process running for 3078.906)
+2025-01-03 11:32:52 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:32:52 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:32:54 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.082 seconds (process running for 3269.503)
+2025-01-03 11:33:53 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:33:53 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:33:54 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.61 seconds (process running for 3329.924)
+2025-01-03 11:34:32 - INFO  c.o.controller.AdminController - Logout Successfull
+2025-01-03 11:34:50 - INFO  c.o.controller.StudentController - Student Login Successfull... emailID:harsh@gmail.com
+2025-01-03 11:35:29 - INFO  c.o.controller.AdminController - Logout Successfull
+2025-01-03 11:59:34 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 11:59:34 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 11:59:36 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.242 seconds (process running for 4871.854)
+2025-01-03 12:00:41 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 12:00:41 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 12:00:42 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.565 seconds (process running for 4937.662)
+2025-01-03 12:04:46 - INFO  c.o.controller.AdminController - Admin Login successfull... emailId:darshan@gmail.com
+2025-01-03 14:28:21 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 14:28:21 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 14:28:25 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 3.822 seconds (process running for 13800.537)
+2025-01-03 14:43:52 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 14:43:52 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 14:43:55 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 3.05 seconds (process running for 14730.803)
+2025-01-03 18:13:25 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:13:25 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:13:27 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.223 seconds (process running for 27302.916)
+2025-01-03 18:14:06 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:14:06 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:14:06 - ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.NoClassDefFoundError: DifficultyLevel
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+Caused by: java.lang.ClassNotFoundException: DifficultyLevel
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+2025-01-03 18:14:41 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:14:41 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:14:43 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.81 seconds (process running for 27378.073)
+2025-01-03 18:18:33 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:18:33 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:18:35 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.829 seconds (process running for 27610.443)
+2025-01-03 18:19:04 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:19:04 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:19:06 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.617 seconds (process running for 27641.365)
+2025-01-03 18:19:29 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:19:29 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:19:31 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.614 seconds (process running for 27666.12)
+2025-01-03 18:20:18 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:20:18 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:20:20 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.704 seconds (process running for 27715.608)
+2025-01-03 18:20:27 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:20:27 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:20:28 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.56 seconds (process running for 27723.876)
+2025-01-03 18:21:27 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:21:27 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:21:29 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.515 seconds (process running for 27784.477)
+2025-01-03 18:22:51 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.Error: Unresolved compilation problems: 
+	Difficulty cannot be resolved to a variable
+	Difficulty cannot be resolved to a variable
+	Difficulty cannot be resolved to a variable
+] with root cause
+java.lang.Error: Unresolved compilation problems: 
+	Difficulty cannot be resolved to a variable
+	Difficulty cannot be resolved to a variable
+	Difficulty cannot be resolved to a variable
+
+	at com.onlineExamSystem.controller.ExamController.getQuestionsByRatio(ExamController.java:99)
+2025-01-03 18:23:27 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:23:27 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:23:28 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.636 seconds (process running for 27903.642)
+2025-01-03 18:24:59 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:24:59 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:25:01 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.652 seconds (process running for 27996.203)
+2025-01-03 18:25:23 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:25:23 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:25:24 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.602 seconds (process running for 28019.88)
+2025-01-03 18:28:17 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:28:17 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:28:19 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.72 seconds (process running for 28194.704)
+2025-01-03 18:28:26 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:28:26 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:28:28 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.667 seconds (process running for 28203.093)
+2025-01-03 18:28:33 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.Error: Unresolved compilation problem: 
+	The method setProgrammingQues(List<ProgrammingQuestion>) is undefined for the type Exam
+] with root cause
+java.lang.Error: Unresolved compilation problem: 
+	The method setProgrammingQues(List<ProgrammingQuestion>) is undefined for the type Exam
+
+	at com.onlineExamSystem.controller.ExamController.autoExamCreate(ExamController.java:227)
+2025-01-03 18:29:11 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:29:11 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:29:13 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.6 seconds (process running for 28248.344)
+2025-01-03 18:29:24 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:29:24 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:29:25 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.62 seconds (process running for 28260.796)
+2025-01-03 18:36:28 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:36:28 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:36:30 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.849 seconds (process running for 28685.277)
+2025-01-03 18:38:16 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:38:16 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:38:18 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.55 seconds (process running for 28793.193)
+2025-01-03 18:43:00 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:43:00 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:43:01 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.655 seconds (process running for 29076.832)
+2025-01-03 18:47:04 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:47:04 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:47:06 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.629 seconds (process running for 29321.617)
+2025-01-03 18:56:47 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:56:47 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:56:49 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.856 seconds (process running for 29904.535)
+2025-01-03 18:57:07 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:57:07 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:57:09 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.595 seconds (process running for 29924.16)
+2025-01-03 18:57:49 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:57:49 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:57:51 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.558 seconds (process running for 29966.361)
+2025-01-03 18:57:59 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:57:59 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:58:00 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.528 seconds (process running for 29975.638)
+2025-01-03 18:58:36 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:58:36 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:58:37 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.556 seconds (process running for 30012.651)
+2025-01-03 18:58:41 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 18:58:41 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 18:58:42 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.596 seconds (process running for 30017.906)
+2025-01-03 18:59:08 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 18:59:34 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:00:10 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:00:10 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:00:12 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.543 seconds (process running for 30107.492)
+2025-01-03 19:00:14 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:00:34 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:00:34 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:00:36 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.534 seconds (process running for 30131.14)
+2025-01-03 19:00:51 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:01:19 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:01:19 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:01:21 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.662 seconds (process running for 30176.507)
+2025-01-03 19:01:36 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:07:54 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:08:35 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:09:58 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:09:58 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:10:00 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.224 seconds (process running for 30695.914)
+2025-01-03 19:10:11 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:10:11 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:10:13 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.549 seconds (process running for 30708.334)
+2025-01-03 19:10:25 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:11:09 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:11:09 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:11:10 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.431 seconds (process running for 30765.887)
+2025-01-03 19:11:18 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:11:47 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:11:56 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:11:57 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:11:57 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:11:57 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:11:57 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:13:25 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: text] with root cause
+java.lang.NullPointerException: text
+	at java.base/java.util.Objects.requireNonNull(Objects.java:246)
+2025-01-03 19:14:15 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:14:15 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:14:17 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.539 seconds (process running for 30952.074)
+2025-01-03 19:44:25 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:44:25 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:44:27 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.133 seconds (process running for 32763.052)
+2025-01-03 19:44:52 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:44:52 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:44:53 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.6 seconds (process running for 32788.795)
+2025-01-03 19:45:42 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:45:42 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:45:43 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.62 seconds (process running for 32838.858)
+2025-01-03 19:45:45 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:45:45 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:45:46 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.437 seconds (process running for 32841.834)
+2025-01-03 19:48:03 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:48:03 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:48:05 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.517 seconds (process running for 32980.16)
+2025-01-03 19:48:55 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:48:55 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:48:56 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.603 seconds (process running for 33031.68)
+2025-01-03 19:52:06 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:52:06 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:52:07 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.589 seconds (process running for 33222.723)
+2025-01-03 19:53:06 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:53:06 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:53:08 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.514 seconds (process running for 33283.321)
+2025-01-03 19:54:32 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:54:32 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:54:33 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.56 seconds (process running for 33368.617)
+2025-01-03 19:55:08 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:55:08 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:55:09 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.589 seconds (process running for 33404.632)
+2025-01-03 19:57:32 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:57:32 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:57:33 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.502 seconds (process running for 33548.613)
+2025-01-03 19:57:40 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:57:40 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:57:41 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.461 seconds (process running for 33556.696)
+2025-01-03 19:58:11 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 19:58:11 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 19:58:13 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.649 seconds (process running for 33588.327)
+2025-01-03 20:00:23 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:00:23 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:00:24 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.47 seconds (process running for 33719.715)
+2025-01-03 20:00:34 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.Long.toString(Long.java:1228)
+2025-01-03 20:01:27 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.time.format.DateTimeParseException: Text '' could not be parsed at index 0] with root cause
+java.time.format.DateTimeParseException: Text '' could not be parsed at index 0
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2108)
+2025-01-03 20:01:44 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:813)
+2025-01-03 20:01:55 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.Long.toString(Long.java:1228)
+2025-01-03 20:02:10 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:02:10 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:02:12 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.671 seconds (process running for 33827.624)
+2025-01-03 20:02:42 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:02:42 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:02:44 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.48 seconds (process running for 33859.403)
+2025-01-03 20:02:49 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.Long.toString(Long.java:460)
+2025-01-03 20:06:29 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:06:29 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:06:31 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.085 seconds (process running for 34087.035)
+2025-01-03 20:07:01 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.Long.toString(Long.java:460)
+2025-01-03 20:13:17 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:13:17 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:13:19 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.825 seconds (process running for 34494.458)
+2025-01-03 20:13:20 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at org.hibernate.collection.spi.PersistentBag.toString(PersistentBag.java:588)
+2025-01-03 20:19:16 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:19:16 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:19:18 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.809 seconds (process running for 34853.278)
+2025-01-03 20:19:18 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:813)
+2025-01-03 20:20:23 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:20:23 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:20:25 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.987 seconds (process running for 34920.547)
+2025-01-03 20:20:26 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.Long.toString(Long.java:460)
+2025-01-03 20:22:37 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:22:37 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:22:38 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.537 seconds (process running for 35053.957)
+2025-01-03 20:22:41 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:22:41 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:22:43 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.572 seconds (process running for 35058.106)
+2025-01-03 20:23:03 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:23:03 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:23:04 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.487 seconds (process running for 35079.631)
+2025-01-03 20:23:10 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.Long.toString(Long.java:460)
+2025-01-03 20:23:23 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 3420 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:23:23 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:23:25 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.644 seconds (process running for 35100.323)
+2025-01-03 20:24:20 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:24:20 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:24:28 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 9.297 seconds (process running for 11.227)
+2025-01-03 20:24:43 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:451)
+2025-01-03 20:25:21 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.Long.toString(Long.java:1228)
+2025-01-03 20:25:40 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:25:40 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:25:42 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.142 seconds (process running for 85.652)
+2025-01-03 20:26:09 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:26:09 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:26:11 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.606 seconds (process running for 114.157)
+2025-01-03 20:26:17 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.util.AbstractCollection.toString(AbstractCollection.java:451)
+2025-01-03 20:26:25 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:26:25 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:26:27 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.624 seconds (process running for 130.057)
+2025-01-03 20:26:32 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:26:32 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:26:33 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.57 seconds (process running for 136.215)
+2025-01-03 20:27:15 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:27:15 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:27:17 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.584 seconds (process running for 179.944)
+2025-01-03 20:27:27 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:27:27 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:27:28 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.536 seconds (process running for 191.223)
+2025-01-03 20:28:48 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.time.format.DateTimeParseException: Text '' could not be parsed at index 0] with root cause
+java.time.format.DateTimeParseException: Text '' could not be parsed at index 0
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2108)
+2025-01-03 20:29:17 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:29:17 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:29:19 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.674 seconds (process running for 302.216)
+2025-01-03 20:29:19 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.StackOverflowError] with root cause
+java.lang.StackOverflowError: null
+	at java.base/java.lang.Long.toString(Long.java:1228)
+2025-01-03 20:31:07 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:31:07 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:31:09 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.791 seconds (process running for 412.365)
+2025-01-03 20:33:38 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:33:38 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:33:40 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.02 seconds (process running for 562.727)
+2025-01-03 20:34:17 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:34:17 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:34:19 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.589 seconds (process running for 601.898)
+2025-01-03 20:35:06 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:35:06 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:35:08 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.694 seconds (process running for 651.294)
+2025-01-03 20:35:36 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:35:36 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:35:38 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.526 seconds (process running for 680.873)
+2025-01-03 20:36:34 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:36:34 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:36:36 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.602 seconds (process running for 738.981)
+2025-01-03 20:37:05 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 20:37:05 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 20:37:07 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.603 seconds (process running for 769.902)
+2025-01-03 20:40:32 - INFO  c.o.controller.AdminController - Logout Successfull
+2025-01-03 20:40:50 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.MalformedJwtException: JWT strings must contain exactly 2 period characters. Found: 0
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:275)
+2025-01-03 20:40:50 - ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.MalformedJwtException: JWT strings must contain exactly 2 period characters. Found: 0
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:275)
+2025-01-03 20:41:55 - INFO  c.o.controller.AdminController - Admin Login successfull... emailId:akshu@gmail.com
+2025-01-03 20:43:11 - INFO  c.o.controller.AdminController - Logout Successfull
+2025-01-03 20:43:54 - INFO  c.o.controller.StudentController - Student Login Successfull... emailID:vatsal@gmail.com
+2025-01-03 21:23:10 - INFO  c.o.controller.AdminController - Logout Successfull
+2025-01-03 21:23:39 - INFO  c.o.controller.AdminController - Admin Login successfull... emailId:akshu@gmail.com
+2025-01-03 21:26:12 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 21:26:12 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 21:26:13 - ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.NoClassDefFoundError: Difficulty
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+Caused by: java.lang.ClassNotFoundException: Difficulty
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+2025-01-03 21:26:15 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 21:26:15 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 21:26:15 - ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.NoClassDefFoundError: Difficulty
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+Caused by: java.lang.ClassNotFoundException: Difficulty
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+2025-01-03 21:26:38 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 21:26:38 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 21:26:41 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 2.626 seconds (process running for 3743.857)
+2025-01-03 21:26:52 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 21:26:52 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 21:26:53 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.82 seconds (process running for 3756.475)
+2025-01-03 21:27:51 - INFO  c.o.OnlineExamSystemApplication - Starting OnlineExamSystemApplication using Java 23.0.1 with PID 16184 (D:\Eclipse\OnlineExamSystem\target\classes started by Darshan in D:\Eclipse\OnlineExamSystem)
+2025-01-03 21:27:51 - INFO  c.o.OnlineExamSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-03 21:27:53 - INFO  c.o.OnlineExamSystemApplication - Started OnlineExamSystemApplication in 1.727 seconds (process running for 3816.218)
+2025-01-03 21:28:19 - INFO  c.o.controller.AdminController - Logout Successfull
