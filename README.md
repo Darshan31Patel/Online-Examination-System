@@ -26,7 +26,7 @@ This is a full-stack application for conducting online examinations, including M
   1. Open the `application.properties` file located in `src/main/resources/`.
   2. Update the following fields with your database credentials:
      ```bash
-      spring.datasource.url=jdbc:mysql://localhost:3306/<your_database_name>
+      spring.datasource.url=jdbc:sqlserver://<server_name>:1433;database=<your_database_name>;encrypt=true;trustServerCertificate=true
       spring.datasource.username=<your_username>
       spring.datasource.password=<your_password>
 ### 6. Access the application
