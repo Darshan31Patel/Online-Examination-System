@@ -1,6 +1,5 @@
 package com.onlineExamSystem.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +27,6 @@ import com.onlineExamSystem.service.AdminService;
 import com.onlineExamSystem.service.ExamService;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -80,12 +78,12 @@ public class ExamController {
 	
 	@PostMapping("/admin/exam/autoExamCreate")
 	public Exam autoExamCreate(@RequestBody Map<String, String> examData, HttpServletRequest request) {
-		System.out.println(examData);
+		// System.out.println(examData);
 		String token = getTokenFromRequest(request);
         Admin admin = verifyAdmin(token);
 		Exam exam = examService.autoCreateExam(examData);
 		exam.setAdmin(admin);
-		System.out.println(exam);
+		// System.out.println(exam);
 //		return exam;
 		return examRepository.save(exam);
 	}

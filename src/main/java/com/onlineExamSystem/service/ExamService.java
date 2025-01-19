@@ -93,9 +93,9 @@ public class ExamService {
 	}
 	
 	public List<McqQuestion> getMcqByRatio(Category category, int totalQues){
-		int easyCount = (int) Math.round(totalQues * 0.4);
+		int hardCount = (int) Math.round(totalQues * 0.2);
 	    int mediumCount = (int) Math.round(totalQues * 0.4);
-	    int hardCount = totalQues - easyCount - mediumCount;
+	    int easyCount = totalQues - hardCount - mediumCount;
 	    
 	    List<McqQuestion> easyQuestions = mcqQuestionRepository.findByCategoryAndDifficulty(category, Difficulty.EASY);
 	    List<McqQuestion> mediumQuestions = mcqQuestionRepository.findByCategoryAndDifficulty(category, Difficulty.MEDIUM);

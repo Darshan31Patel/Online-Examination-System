@@ -96,7 +96,4 @@ public class StudentController {
 			return "Incorrect Old password";
 		}
 	}
-	
-
-	
 }

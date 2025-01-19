@@ -64,6 +64,7 @@ function AddQuesForm() {
 
     } catch (error) {
       console.log("Error Occured")
+      alert("Fill all fields")
     }
 
   }

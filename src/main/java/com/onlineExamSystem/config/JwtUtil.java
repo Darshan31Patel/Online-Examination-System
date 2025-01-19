@@ -21,8 +21,8 @@ public class JwtUtil {
     public String generateToken(String email, Long adminId) {
         Key key = Keys.hmacShaKeyFor(secretKey.getBytes()); // Convert secret key to Key object
         return Jwts.builder()
-                .setSubject(email)
-                .claim("adminId", adminId)
+                .setSubject(email) // represent from whom the token issued
+                .claim("adminId", adminId) //claim allows to store user-specific data in token
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(key, SignatureAlgorithm.HS256)

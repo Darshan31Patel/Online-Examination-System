@@ -1,15 +1,9 @@
 package com.onlineExamSystem.service;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +22,11 @@ public class AdminService{
 	private Map<Long, String> adminTokens = new HashMap<Long, String>();
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
 
+	public String saveDetails(Admin admin) {
+		admin.setPassword(encoder.encode(admin.getPassword()));	
+		adminRepository.save(admin);
+		return "Admin Registered Successfully";
+	}
 	
 	public String login(String email, String password) {
 		Admin admin = adminRepository.findByEmail(email).orElse(null);
@@ -44,11 +43,6 @@ public class AdminService{
 		return adminTokens.get(adminId);
 	}
 	
-	public String saveDetails(Admin admin) {
-		admin.setPassword(encoder.encode(admin.getPassword()));	
-		adminRepository.save(admin);
-		return "Admin Registered Successfully";
-	}
 	
 	public boolean authenticate(String email, String password) {
 		return adminRepository.findByEmail(email)

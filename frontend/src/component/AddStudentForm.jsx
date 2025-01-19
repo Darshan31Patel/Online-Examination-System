@@ -11,7 +11,7 @@ function AddStudentForm() {
   const addStudent = async (e)=>{
     e.preventDefault();
     const data = {name:name, email:email, rollNo:rollNo, password:password }
-    console.log(data)
+    // console.log(data)
     try {
         const token = localStorage.getItem("token");
         // console.log(token);        
